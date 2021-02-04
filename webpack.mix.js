@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 require('laravel-mix-polyfill')
 
 /*
@@ -12,11 +12,12 @@ require('laravel-mix-polyfill')
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').vue()
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
-        require('autoprefixer'),
+        require('autoprefixer')
     ])
     .extract()
     .polyfill({
@@ -26,8 +27,8 @@ mix.js('resources/js/app.js', 'public/js').vue()
         corejs: 3,
         debug: false // "true" to check which polyfills are being used
     })
-    .webpackConfig(require('./webpack.config'));
+    .webpackConfig(require('./webpack.config'))
 
 if (mix.inProduction()) {
-    mix.version();
+    mix.version()
 }
