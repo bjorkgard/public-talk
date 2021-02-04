@@ -6,11 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SpeakerStoreRequest extends FormRequest
 {
-    public function prepareForValidation()
-    {
-        $this->errorBag = 'speakerErrorBag';
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *

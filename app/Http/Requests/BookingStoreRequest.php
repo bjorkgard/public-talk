@@ -6,11 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BookingStoreRequest extends FormRequest
 {
-    public function prepareForValidation()
-    {
-        $this->errorBag = 'bookingErrorBag';
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *

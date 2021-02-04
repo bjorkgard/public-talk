@@ -6,11 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ChairmanUpdateRequest extends FormRequest
 {
-    public function prepareForValidation()
-    {
-        $this->errorBag = 'chairmanErrorBag';
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *

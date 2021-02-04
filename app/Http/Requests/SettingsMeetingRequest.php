@@ -7,11 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SettingsMeetingRequest extends FormRequest
 {
-    public function prepareForValidation()
-    {
-        $this->errorBag = 'updateMeetingSettings';
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *
