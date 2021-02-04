@@ -88,7 +88,6 @@ class SpeakerController extends Controller
         $speaker->update($request->validated());
         $speaker->talks()->sync($request->input('talks'));
 
-
         $request->session()->flash('success', $speaker->firstname . ' ' . $speaker->lastname . ' är uppdaterad');
 
         return Redirect::route('speakers.index');
