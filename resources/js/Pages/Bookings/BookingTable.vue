@@ -1,0 +1,280 @@
+<template>
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr>
+                            <th
+                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                Datum
+                            </th>
+                            <th
+                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                Sång
+                            </th>
+                            <th
+                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                Tema
+                            </th>
+                            <th
+                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                Talare
+                            </th>
+                            <th
+                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                                Ordförande
+                            </th>
+                            <th class="px-6 py-3 bg-gray-50 text-right">
+                                <span title="Skapa en ny bokning">
+                                    <Icons
+                                        name="plus"
+                                        class="h-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                        @click.native="addBooking()"
+                                    />
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr v-for="booking in bookings" :key="booking.id">
+                            <td class="px-6 py-4 text-gray-900">
+                                {{ booking.date }}
+                            </td>
+                            <td class="px-6 py-4 text-gray-900">
+                                {{ booking.song || '&nbsp;' }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-no-wrap"
+                                :class="{
+                                    'line-through':
+                                        booking.talk && booking.talk.deleted_at
+                                }"
+                            >
+                                <div class="leading-5 text-gray-900">
+                                    {{
+                                        booking.talk
+                                            ? booking.talk.theme
+                                            : booking.exception
+                                            ? booking.custom_talk
+                                            : '&nbsp;'
+                                    }}
+                                </div>
+                                <div
+                                    v-if="!booking.exception"
+                                    class="text-sm leading-5 text-gray-500"
+                                >
+                                    {{
+                                        booking.talk
+                                            ? `(${booking.talk.number}) ${booking.talk.subject}`
+                                            : '&nbsp;'
+                                    }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap">
+                                <div class="leading-5 text-gray-900">
+                                    {{
+                                        booking.speaker
+                                            ? booking.speaker.full_name
+                                            : booking.exception
+                                            ? booking.custom_speaker
+                                            : '&nbsp;'
+                                    }}
+                                </div>
+                                <div
+                                    v-if="!booking.exception"
+                                    class="text-sm leading-5 text-gray-500"
+                                >
+                                    {{
+                                        booking.speaker
+                                            ? booking.speaker.congregation
+                                            : '&nbsp;'
+                                    }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap text-gray-900">
+                                {{ booking.chairman ? booking.chairman.name : '&nbsp;' }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                            >
+                                <span
+                                    v-if="booking.talk && booking.talk.deleted_at"
+                                    title="Föreläsningen är raderad på jw.org"
+                                >
+                                    <Icons name="warning" class="w-5 text-orange-500" />
+                                </span>
+                                <span
+                                    v-if="
+                                        booking.id &&
+                                        !booking.exception &&
+                                        !booking.upcoming &&
+                                        !booking.thanked
+                                    "
+                                    title="Skicka ett tack till talaren"
+                                >
+                                    <Icons
+                                        name="thumb"
+                                        class="h-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                        @click.native="thankSpeaker(booking.id)"
+                                    />
+                                </span>
+                                <span
+                                    v-if="
+                                        booking.id &&
+                                        !booking.exception &&
+                                        !booking.upcoming &&
+                                        (!booking.grade || !booking.comment)
+                                    "
+                                    title="Interna kommentarer"
+                                >
+                                    <Icons
+                                        name="comment"
+                                        class="h-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                        @click.native="commentBooking(booking.id)"
+                                    />
+                                </span>
+                                <span
+                                    v-if="booking.id && booking.upcoming"
+                                    title="Uppdatera bokning"
+                                >
+                                    <Icons
+                                        name="edit"
+                                        class="h-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                        @click.native="editBooking(booking.id)"
+                                    />
+                                </span>
+                                <span
+                                    v-if="booking.id && booking.upcoming"
+                                    title="Radera bokning"
+                                >
+                                    <Icons
+                                        name="delete"
+                                        class="h-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                        @click.native="confirmBookingDeletion(booking.id)"
+                                    />
+                                </span>
+                                <span v-if="!booking.id" title="Skapa en ny bokning">
+                                    <Icons
+                                        name="plus"
+                                        class="h-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                        @click.native="addBooking(booking.date)"
+                                    />
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Delete Booking Confirmation Modal -->
+        <JetConfirmationModal
+            :show="confirmingBookingDeletion"
+            @close="confirmingBookingDeletion = false"
+        >
+            <template #title> Radera bokning </template>
+
+            <template #content>
+                Är du säker på att du vill radera den här bokningen?<br />
+                Om du vill skicka ett medelande till talaren att bokningen är borttagen
+                klickar du på <strong>Radera & Meddela</strong> annars bara på
+                <strong>Radera</strong>.
+            </template>
+
+            <template #footer>
+                <JetSecondaryButton @click.native="confirmingBookingDeletion = false">
+                    Avbryt
+                </JetSecondaryButton>
+
+                <JetDangerButton
+                    class="ml-2"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                    @click.native="deleteBooking(true)"
+                >
+                    Radera & Meddela
+                </JetDangerButton>
+
+                <JetDangerButton
+                    class="ml-2"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                    @click.native="deleteBooking()"
+                >
+                    Radera
+                </JetDangerButton>
+            </template>
+        </JetConfirmationModal>
+    </div>
+</template>
+
+<script>
+import Icons from '@Shared/Icons'
+import JetConfirmationModal from '@/Jetstream/ConfirmationModal'
+import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import JetDangerButton from '@/Jetstream/DangerButton'
+
+export default {
+    components: {
+        Icons,
+        JetConfirmationModal,
+        JetSecondaryButton,
+        JetDangerButton
+    },
+    props: ['bookings'],
+    data() {
+        return {
+            confirmingBookingDeletion: false,
+
+            form: this.$inertia.form(
+                {
+                    _method: 'DELETE',
+                    message: false,
+                    id: '',
+                    date: ''
+                },
+                {
+                    bag: 'bookingErrorBag',
+                    resetOnSuccess: true
+                }
+            )
+        }
+    },
+    methods: {
+        thankSpeaker(bookingId) {
+            this.$inertia.visit(`/bookings/thanks/${bookingId}`)
+        },
+        commentBooking(bookingId) {
+            this.$inertia.visit(`/bookings/comments/${bookingId}`)
+        },
+        addBooking(date = null) {
+            this.form.date = date
+            this.form._method = 'POST'
+
+            this.form.post('/bookings/create')
+        },
+        confirmBookingDeletion(bookingId) {
+            this.confirmingBookingDeletion = true
+            this.form.id = bookingId
+        },
+        editBooking(bookingId) {
+            this.$inertia.visit(`/bookings/${bookingId}/edit`)
+        },
+        deleteBooking(message = false) {
+            this.form.message = message
+
+            this.form.post('/bookings/' + this.form.id, {
+                preserveScroll: true
+            })
+
+            this.confirmingBookingDeletion = false
+        }
+    }
+}
+</script>

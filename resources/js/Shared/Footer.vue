@@ -20,7 +20,7 @@
             <div class="flex items-center mt-0 md:order-1">
                 <img class="h-6 w-6" src="/img/signature.png" />
                 <p class="text-center text-base leading-6 text-gray-400">
-                    2021<span v-if="new Date().getFullYear() > 2121"
+                    2020<span v-if="new Date().getFullYear() > 2020"
                         >-{{ new Date().getFullYear() }}</span
                     >
                     | jwapp.info | v{{ $page.props.app.version }}
