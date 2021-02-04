@@ -1,0 +1,13 @@
+{
+  "Hello!": "Hej!",
+  "If you did not create an account, no further action is required.": "Om du inte skapade ett konto krävs inga ytterligare åtgärder.",
+  "If you did not request a password reset, no further action is required.": "Om du inte begärde en återställning av lösenordet krävs inga ytterligare åtgärder.",
+  "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "Om du har problem med att klicka på knappen \":actionText\", kopiera och klistra in webbadressen nedan till din webbläsare:",
+  "Please click the button below to verify your email address.": "Klicka på knappen nedan för att verifiera din e-postadress.",
+  "Regards": "Med vänlig hälsning",
+  "Reset Password": "Återställ lösenordet",
+  "Reset Password Notification": "Återställ lösenordet",
+  "This password reset link will expire in :count minutes.": "Den här länken för återställning av lösenord upphör att gälla om :count minuter",
+  "Verify Email Address": "Verifiera e-postadressen",
+  "You are receiving this email because we received a password reset request for your account.": "Du får detta e-postmeddelande eftersom vi fick en begäran om återställning av lösenord för ditt konto."
+}
