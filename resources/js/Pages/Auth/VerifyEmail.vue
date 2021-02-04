@@ -1,61 +1,74 @@
 <template>
-    <jet-authentication-card>
+    <JetAuthenticationCard>
         <template #logo>
-            <jet-authentication-card-logo />
+            <JetAuthenticationCardLogo />
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.
+            Tack för att du registrerade dig!<br />Innan du kommer igång behöver du
+            verifiera din e-postadress genom att klicka på länken som vi just skickade
+            till dig. Om du inte fick e-postmeddelandet skickar vi gärna ett nytt till
+            dig.
         </div>
 
-        <div class="mb-4 font-medium text-sm text-green-600" v-if="verificationLinkSent" >
-            A new verification link has been sent to the email address you provided during registration.
+        <div v-if="verificationLinkSent" class="mb-4 font-medium text-sm text-green-600">
+            En ny verifieringslänk har skickats till den e-postadress du angav under
+            registreringen.
         </div>
 
         <form @submit.prevent="submit">
             <div class="mt-4 flex items-center justify-between">
-                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Resend Verification Email
-                </jet-button>
+                <JetButton
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
+                    Skicka verifieringsemail igen
+                </JetButton>
 
-                <inertia-link :href="route('logout')" method="post" as="button" class="underline text-sm text-gray-600 hover:text-gray-900">Logout</inertia-link>
+                <inertia-link
+                    :href="route('logout')"
+                    method="post"
+                    as="button"
+                    class="underline text-sm text-gray-600 hover:text-gray-900"
+                    >Logga ut</inertia-link
+                >
             </div>
         </form>
-    </jet-authentication-card>
+    </JetAuthenticationCard>
 </template>
 
 <script>
-    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
-    import JetButton from '@/Jetstream/Button'
+import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
+import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
+import JetButton from '@/Jetstream/Button'
 
-    export default {
-        components: {
-            JetAuthenticationCard,
-            JetAuthenticationCardLogo,
-            JetButton,
-        },
+export default {
+    components: {
+        JetAuthenticationCard,
+        JetAuthenticationCardLogo,
+        JetButton
+    },
 
-        props: {
-            status: String
-        },
+    props: {
+        status: String
+    },
 
-        data() {
-            return {
-                form: this.$inertia.form()
-            }
-        },
+    data() {
+        return {
+            form: this.$inertia.form()
+        }
+    },
 
-        methods: {
-            submit() {
-                this.form.post(this.route('verification.send'))
-            },
-        },
+    computed: {
+        verificationLinkSent() {
+            return this.status === 'verification-link-sent'
+        }
+    },
 
-        computed: {
-            verificationLinkSent() {
-                return this.status === 'verification-link-sent';
-            }
+    methods: {
+        submit() {
+            this.form.post(this.route('verification.send'))
         }
     }
+}
 </script>

@@ -1,68 +1,80 @@
 <template>
-    <jet-authentication-card>
+    <JetAuthenticationCard>
         <template #logo>
-            <jet-authentication-card-logo />
+            <JetAuthenticationCardLogo />
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+            Glömt ditt lösenord?<br />Inga problem. Fyll bara i din e-postadress så
+            skickar vi dig en länk för återställning av lösenord som gör att du kan välja
+            en ny.
         </div>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
         </div>
 
-        <jet-validation-errors class="mb-4" />
+        <JetValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
             <div>
-                <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+                <JetLabel for="email" value="E-postadress" />
+                <JetInput
+                    id="email"
+                    v-model="form.email"
+                    type="email"
+                    class="mt-1 block w-full"
+                    required
+                    autofocus
+                />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
-                </jet-button>
+                <JetButton
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
+                    Skicka länk för återställning
+                </JetButton>
             </div>
         </form>
-    </jet-authentication-card>
+    </JetAuthenticationCard>
 </template>
 
 <script>
-    import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
-    import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
-    import JetButton from '@/Jetstream/Button'
-    import JetInput from '@/Jetstream/Input'
-    import JetLabel from '@/Jetstream/Label'
-    import JetValidationErrors from '@/Jetstream/ValidationErrors'
+import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
+import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'
+import JetButton from '@/Jetstream/Button'
+import JetInput from '@/Jetstream/Input'
+import JetLabel from '@/Jetstream/Label'
+import JetValidationErrors from '@/Jetstream/ValidationErrors'
 
-    export default {
-        components: {
-            JetAuthenticationCard,
-            JetAuthenticationCardLogo,
-            JetButton,
-            JetInput,
-            JetLabel,
-            JetValidationErrors
-        },
+export default {
+    components: {
+        JetAuthenticationCard,
+        JetAuthenticationCardLogo,
+        JetButton,
+        JetInput,
+        JetLabel,
+        JetValidationErrors
+    },
 
-        props: {
-            status: String
-        },
+    props: {
+        status: String
+    },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    email: ''
-                })
-            }
-        },
+    data() {
+        return {
+            form: this.$inertia.form({
+                email: ''
+            })
+        }
+    },
 
-        methods: {
-            submit() {
-                this.form.post(this.route('password.email'))
-            }
+    methods: {
+        submit() {
+            this.form.post(this.route('password.email'))
         }
     }
+}
 </script>
