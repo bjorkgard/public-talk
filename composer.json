@@ -7,6 +7,9 @@
         }
     },
     "autoload-dev": {
+        "files": [
+            "app/helpers.php"
+        ],
         "psr-4": {
             "Tests\\": "tests/"
         }
@@ -33,7 +36,6 @@
     "name": "laravel/laravel",
     "prefer-stable": true,
     "require": {
-        "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -44,6 +46,7 @@
         "laravel/jetstream": "^2.1",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "php": "^7.3|^8.0",
         "sammyjo20/wagonwheel": "^2.0",
         "spatie/calendar-links": "^1.4",
         "spatie/laravel-ray": "^1.12",
