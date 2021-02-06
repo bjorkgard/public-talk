@@ -31,8 +31,8 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('/bookings', BookingsController::class)->except(['create', 'show']);
-    Route::post('/bookings/create', [BookingsController::class, 'create'])->name('bookings.create');
-    Route::get('/bookings/create', [BookingsController::class, 'create'])->name('bookings.create');
+    Route::post('/bookings/create', [BookingsController::class, 'create']);
+    Route::get('/bookings/create', [BookingsController::class, 'create']);
     Route::get('/bookings/thanks/{booking}', [BookingsController::class, 'showThanks'])->name('bookings.thanks');
     Route::get('/bookings/comments/{booking}', [BookingsController::class, 'showComments'])->name('bookings.comments');
     Route::post('/bookings/comments/{booking}', [BookingsController::class, 'comments'])->name('bookings.comment');
