@@ -3,15 +3,11 @@
 namespace App\Mail;
 
 use App\Models\Booking;
-use Carbon\Carbon;
-use DateInterval;
-use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Sammyjo20\Wagonwheel\Concerns\SaveForOnlineViewing;
-use Spatie\CalendarLinks\Link;
 
 class BookingConfirmation extends Mailable
 {
@@ -38,7 +34,7 @@ class BookingConfirmation extends Mailable
      */
     public function build()
     {
-        $this->calendarLink = generateICS($this->booking);
+        $this->calendarLink = generateIcs($this->booking);
         $this->mapLink = generateMapLink($this->booking);
 
         return $this

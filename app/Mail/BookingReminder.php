@@ -34,7 +34,7 @@ class BookingReminder extends Mailable
      */
     public function build()
     {
-        $this->calendarLink = generateICS($this->booking);
+        $this->calendarLink = generateIcs($this->booking);
         $this->mpaLink = generateMapLink($this->booking);
 
         return $this
