@@ -33,5 +33,5 @@ Ladda ner kalenderfil
 @endcomponent
 
 Välkommen<br>
-{{ $booking->user->settings->congregation->name }}
+{{ $booking->user->name }}, {{ $booking->user->settings->congregation->name }}
 @endcomponent
