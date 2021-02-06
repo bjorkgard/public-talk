@@ -266,11 +266,11 @@ export default {
 
             this.timer = setTimeout(() => {
                 this.$inertia.get(
-                    this.$page.speakers.first_page_url,
+                    this.$page.props.speakers.first_page_url,
                     { search: value },
                     { replace: true }
                 )
-            }, 800)
+            }, 500)
         },
 
         editSpeaker(speaker) {
