@@ -169,7 +169,10 @@ return [
         'custom_talk' => 'föreläsning',
         'custom_speaker' => 'talare',
         'chairman_id' => 'ordförande',
-        'time' => 'tid'
+        'time' => 'tid',
+        'grade' => 'betyg',
+        'comments' => 'kommentarer',
+        'greeting' => 'hälsning'
      ],
 
 ];
