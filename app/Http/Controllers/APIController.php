@@ -14,7 +14,7 @@ class APIController extends Controller
         // set dates
         $startDate = Carbon::now()->locale('sv');
         $start = $startDate->copy()->startOfWeek();
-        $end = $startDate->copy()->endOfWeek()->addWeeks($weeks);
+        $end = $startDate->copy()->endOfWeek()->addWeeks($weeks - 1);
         
         $bookings = DB::table('bookings')
                 ->where('bookings.user_id', $request->user()->id)
@@ -22,7 +22,7 @@ class APIController extends Controller
                 ->leftJoin('chairmen', 'chairmen.id', '=', 'bookings.chairman_id')
                 ->leftJoin('talks', 'talks.id', '=', 'bookings.talk_id')
                 ->leftJoin('speakers', 'speakers.id', '=', 'bookings.speaker_id')
-                ->select('date', 'time', 'custom_talk', 'custom_speaker', 'chairmen.name as chairman', 'talks.theme as theme', 'speakers.firstname', 'speakers.lastname', 'speakers.congregation')
+                ->select('date', 'time', 'song', 'custom_talk', 'custom_speaker', 'chairmen.name as chairman', 'talks.theme as theme', 'speakers.firstname', 'speakers.lastname', 'speakers.congregation')
                 ->orderBy('bookings.date')
                 ->get();
 
