@@ -35,7 +35,7 @@ class ReminderSpeaker extends Command
         $bookings = Booking::where('date', $nextWeek)->with('user')->get();
 
         foreach ($bookings as $booking) {
-            if ($booking->speaker->email && $booking->user->settings->notifications->reminder) {
+            if ($booking->speaker && $booking->speaker->email && $booking->user->settings->notifications->reminder) {
                 Mail::to($booking->speaker->email, $booking->speaker->name)->queue(new BookingReminder($booking));
             }
         }

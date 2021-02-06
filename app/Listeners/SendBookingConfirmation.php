@@ -29,7 +29,7 @@ class SendBookingConfirmation implements ShouldQueue
      */
     public function handle(BookingDone $event)
     {
-        if ($event->booking->speaker->email) {
+        if ($event->booking->speaker && $event->booking->speaker->email) {
             Mail::to($event->booking->speaker->email, $event->booking->speaker->name)->send(new BookingConfirmation($event->booking));
         }
     }
