@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('telescope:prune')->daily()->environments('local');;
+        $schedule->command('telescope:prune')->daily()->environments(['local']);;
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
 
         $schedule->command('pt:remind-speaker')->daily()->pingOnSuccess('http://beats.envoyer.io/heartbeat/BO8elh9WGDGB7Iq');
