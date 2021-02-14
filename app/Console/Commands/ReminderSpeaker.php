@@ -32,10 +32,10 @@ class ReminderSpeaker extends Command
     public function handle()
     {
         $nextWeek = Carbon::now()->addDays(7)->format('Y-m-d');
-        $bookings = Booking::where('date', $nextWeek)->with('user')->get();
+        $bookings = Booking::where('date', $nextWeek)->with('settings')->get();
 
         foreach ($bookings as $booking) {
-            if ($booking->speaker && $booking->speaker->email && $booking->user->settings->notifications->reminder) {
+            if ($booking->speaker && $booking->speaker->email && $booking->settings->notifications->reminder) {
                 Mail::to($booking->speaker->email, $booking->speaker->name)->queue(new BookingReminder($booking));
             }
         }
