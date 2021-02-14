@@ -29,7 +29,12 @@
                     class="mt-10 sm:mt-0"
                 />
 
-                <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
+                <template
+                    v-if="
+                        $page.props.jetstream.hasAccountDeletionFeatures &&
+                        $page.props.user.role !== 'viewer'
+                    "
+                >
                     <JetSectionBorder />
 
                     <DeleteUserForm class="mt-10 sm:mt-0" />
