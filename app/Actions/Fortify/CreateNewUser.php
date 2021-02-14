@@ -31,29 +31,32 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return DB::transaction(function () use ($input) {
-            return tap(User::create([
-                'name' => $input['name'],
-                'email' => $input['email'],
-                'phone' => $input['phone'],
-                'password' => Hash::make($input['password']),
-            ]), function (User $user) {
-                $settings = $this->createSettings($user);
-            });
+            $settings = Settings::create([
+                'extra' => [],
+            ]);
+
+            $user = $this->createUser($settings, $input);
+
+            return $user;
         });
     }
 
     /**
      * Create personal settings for the user.
      * 
-     * @param \App\Models\User $user
-     * @return \App\Models\Settings $settings
+     * @param \App\Models\Settings $settings
+     * £param array $input
      */
-    public function createSettings(User $user)
+    public function createUser(Settings $settings, $input)
     {
-        $settings = Settings::create([
-            'user_id' => $user->id
+        $user = User::create([
+            'settings_id' => $settings->id,
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'phone' => $input['phone'],
+            'password' => Hash::make($input['password'])
         ]);
 
-        return $settings;
+        return $user;
     }
 }
