@@ -15,7 +15,8 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('settings_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('set null');
             $table->foreignId('speaker_id')->nullable()->onDelete('set null');
             $table->foreignId('talk_id')->nullable()->onDelete('set null');
             $table->foreignId('chairman_id')->nullable()->onDelete('set null');

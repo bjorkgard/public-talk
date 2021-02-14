@@ -15,7 +15,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('settings_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->json('congregation');
             $table->json('meeting');
             $table->json('extra');

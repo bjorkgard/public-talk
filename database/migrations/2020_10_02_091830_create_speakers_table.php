@@ -15,7 +15,7 @@ class CreateSpeakersTable extends Migration
     {
         Schema::create('speakers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('settings_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('congregation');
