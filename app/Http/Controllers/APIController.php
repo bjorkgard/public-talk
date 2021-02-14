@@ -17,7 +17,7 @@ class APIController extends Controller
         $end = $startDate->copy()->endOfWeek()->addWeeks($weeks - 1);
         
         $bookings = DB::table('bookings')
-                ->where('bookings.user_id', $request->user()->id)
+                ->where('bookings.settings_id', $request->user()->settings->id)
                 ->whereBetween('bookings.date', [$start, $end])
                 ->leftJoin('chairmen', 'chairmen.id', '=', 'bookings.chairman_id')
                 ->leftJoin('talks', 'talks.id', '=', 'bookings.talk_id')
