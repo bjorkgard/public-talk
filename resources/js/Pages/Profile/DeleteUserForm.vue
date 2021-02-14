@@ -22,9 +22,9 @@
                 <template #title> Radera konto </template>
 
                 <template #content>
-                    Är du säker på att du vill ta bort ditt konto?<br />När ditt konto har
-                    raderats raderas alla dess resurser och data permanent. Ange ditt
-                    lösenord för att bekräfta att du vill radera ditt konto permanent.
+                    Är du säker på att du vill ta bort ditt konto?<br />När kontot raderas
+                    kommer all data raderas permanent.<br />Ange ditt lösenord för att bekräfta
+                    att du vill radera ditt konto permanent.
 
                     <div class="mt-4">
                         <JetInput
