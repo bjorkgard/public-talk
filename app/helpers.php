@@ -6,7 +6,7 @@ use Spatie\CalendarLinks\Link;
 
 function generateMapLink(Booking $booking)
 {
-  return 'https://www.google.com/maps/place/' . $booking->user->settings->congregation->address . ', ' . $booking->user->settings->congregation->zip . ' ' . $booking->user->settings->congregation->city;
+  return 'https://www.google.com/maps/place/' . $booking->settings->congregation->address . ', ' . $booking->settings->congregation->zip . ' ' . $booking->settings->congregation->city;
 }
 
 function generateIcs(Booking $booking)
@@ -18,15 +18,15 @@ function generateIcs(Booking $booking)
 
   return Link::create('Föreläsning: ' . $booking->talk->full_theme, $from, $to)
     ->description(generateDescription($booking))
-    ->address($booking->user->settings->congregation->address . ', ' . $booking->user->settings->congregation->zip . ' ' . $booking->user->settings->congregation->city);
+    ->address($booking->settings->congregation->address . ', ' . $booking->settings->congregation->zip . ' ' . $booking->settings->congregation->city);
 }
 
 function generateDescription(Booking $booking)
 {
   $description = '';
 
-  $description .= $booking->user->settings->congregation->name . '\n';
-  $description .= $booking->user->settings->congregation->address . ', ' . $booking->user->settings->congregation->zip . ' ' . $booking->user->settings->congregation->city . '\n';
+  $description .= $booking->settings->congregation->name . '\n';
+  $description .= $booking->settings->congregation->address . ', ' . $booking->settings->congregation->zip . ' ' . $booking->settings->congregation->city . '\n';
   $description .= '\nKontaktuppgifter:\n';
   $description .= $booking->user->name . '\n';
   $description .= $booking->user->email . '\n';
@@ -44,7 +44,7 @@ function generateChairmanIcs(Booking $booking)
 
   return Link::create('Ordförande till föreläsningen', $from, $to)
     ->description(generateChairmanDescription($booking))
-    ->address($booking->user->settings->congregation->address . ', ' . $booking->user->settings->congregation->zip . ' ' . $booking->user->settings->congregation->city);
+    ->address($booking->settings->congregation->address . ', ' . $booking->settings->congregation->zip . ' ' . $booking->settings->congregation->city);
 }
 
 function generateChairmanDescription(Booking $booking)
