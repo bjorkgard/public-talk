@@ -42,10 +42,11 @@ class CreateNewUser implements CreatesNewUsers
     }
 
     /**
-     * Create personal settings for the user.
+     * Create user for the settings.
      * 
      * @param \App\Models\Settings $settings
-     * £param array $input
+     * @param array $input
+     * @return \App\Models\User $user
      */
     public function createUser(Settings $settings, $input)
     {
