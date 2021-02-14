@@ -24,7 +24,7 @@ class ChairmanStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'settings_id' => ['required', 'integer', 'exists:settings,id'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required', 'string', 'max:255'],

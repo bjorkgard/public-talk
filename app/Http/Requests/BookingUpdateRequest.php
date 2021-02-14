@@ -13,7 +13,7 @@ class BookingUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->id == $this->route('booking')->user_id;
+        return $this->user()->settings->id == $this->route('booking')->settings_id;
     }
 
     /**
@@ -25,7 +25,7 @@ class BookingUpdateRequest extends FormRequest
     {
         return [
             'id' => ['required', 'integer', 'exists:bookings,id'],
-            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'settings_id' => ['required', 'integer', 'exists:settings,id'],
             'date' => ['required', 'date'],
             'time' => ['required', 'date_format:H:i'],
             'song' => ['integer', 'nullable'],

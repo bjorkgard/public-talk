@@ -14,9 +14,7 @@ class SettingsMeetingRequest extends FormRequest
      */
     public function authorize()
     {
-        $settings = Settings::find($this->route('setting'));
-
-        return $settings && $this->user()->id == $settings->user_id;
+        return $this->user()->settings->id == $this->route('setting');
     }
 
     /**

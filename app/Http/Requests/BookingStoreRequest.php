@@ -25,6 +25,7 @@ class BookingStoreRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'integer', 'exists:users,id'],
+            'settings_id' => ['required', 'integer', 'exists:settings,id'],
             'date' => ['required', 'date'],
             'time' => ['required', 'date_format:H:i'],
             'song' => ['integer', 'nullable'],

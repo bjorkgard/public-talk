@@ -18,7 +18,7 @@ class SettingsNotificationsRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->id == $this->route('setting')->user_id;
+        return $this->user()->settings->id == $this->route('setting')->id;
     }
 
     /**

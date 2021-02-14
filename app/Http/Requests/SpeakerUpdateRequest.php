@@ -13,7 +13,7 @@ class SpeakerUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->id == $this->route('speaker')->user_id;
+        return $this->user()->settings->id == $this->route('speaker')->settings_id;
     }
 
     /**
@@ -24,7 +24,7 @@ class SpeakerUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'settings_id' => ['required', 'integer', 'exists:settings,id'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'congregation' => ['required', 'string', 'max:255'],

@@ -16,9 +16,7 @@ class SettingsCongregationRequest extends FormRequest
      */
     public function authorize()
     {
-        $settings = Settings::find($this->route('setting'));
-
-        return $settings && $this->user()->id == $settings->user_id;
+        return $this->user()->settings->id == $this->route('setting');
     }
 
     /**
@@ -33,6 +31,8 @@ class SettingsCongregationRequest extends FormRequest
             'address' => 'required|string|max:255',
             'zip' => 'required|string|max:255',
             'city' => 'required|string|max:255',
+            'latitude' => 'nullable|string|max:255',
+            'longitude' => 'nullable|string|max:255',
         ];
     }
 }
