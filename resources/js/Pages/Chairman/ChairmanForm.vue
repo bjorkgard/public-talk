@@ -92,7 +92,7 @@ export default {
             form: this.$inertia.form(
                 {
                     id: '',
-                    user_id: this.$page.props.user.id,
+                    settings_id: this.$page.props.user.settings.id,
                     name: '',
                     email: '',
                     phone: ''
