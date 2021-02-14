@@ -23,15 +23,6 @@ class Settings extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'user_id',
-    ];
-
-    /**
      * The attributes that should be cast.
      *
      * @var array
@@ -55,8 +46,23 @@ class Settings extends Model
         'notifications' => '{"confirmation" : false, "reminder" : false, "thanks" : false, "chairman" : false}',
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->hasMany(\App\Models\User::class);
+    }
+
+    public function speakers()
+    {
+        return $this->hasMany(\App\Models\Speaker::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(\App\Models\Booking::class);
+    }
+
+    public function chairmen()
+    {
+        return $this->hasMany(\App\Models\Chairman::class);
     }
 }

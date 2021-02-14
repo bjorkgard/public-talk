@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Scopes\UserScope;
+use App\Scopes\SettingsScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +32,7 @@ class Chairman extends Model
         'name',
         'email',
         'phone',
-        'user_id',
+        'settings_id',
     ];
 
     /**
@@ -42,7 +42,7 @@ class Chairman extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'user_id' => 'integer',
+        'settings_id' => 'integer',
     ];
 
     public function lastBooking()
@@ -52,12 +52,12 @@ class Chairman extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope(new UserScope);
+        static::addGlobalScope(new SettingsScope);
     }
 
-    public function user()
+    public function settings()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(\App\Settings::class);
     }
 
     public function bookings()
