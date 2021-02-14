@@ -25,7 +25,7 @@ class BookingsController extends Controller
 {
     public function index(Request $request)
     {
-        $settings = Settings::where('user_id', $request->user()->id)->first();
+        $settings = $request->user()->settings;
         $bookings = [];
 
         if ($request->has('startDate')) {
@@ -72,7 +72,7 @@ class BookingsController extends Controller
 
     public function create(Request $request)
     {
-        $settings = Settings::where('user_id', $request->user()->id)->first();
+        $settings = $request->user()->settings;
 
         // date
         $date = null;
@@ -100,7 +100,7 @@ class BookingsController extends Controller
             'identifier' => Str::orderedUuid()
         ]);
 
-        event(new BookingDone($booking->load('user', 'speaker', 'talk')));
+        event(new BookingDone($booking->load('settings', 'speaker', 'talk')));
 
         return redirect()->route('bookings.index', ['startDate' => $request->input('date')]);
     }
@@ -113,7 +113,7 @@ class BookingsController extends Controller
      */
     public function destroy(BookingDestroyRequest $request, Booking $booking)
     {
-        if ($request->input('message')) {
+        if ($request->input('message') && $booking->speaker) {
             Mail::to($booking->speaker->email)->send(new BookingDeleted($request->user(), $booking->date));
             $request->session()->flash('success', 'Bokningen är raderad och talaren har fått en bekräftelse');
         } else {
@@ -127,7 +127,7 @@ class BookingsController extends Controller
 
     public function edit(Request $request, Booking $booking)
     {
-        if ($request->user()->id != $booking->user_id) {
+        if ($request->user()->settings->id != $booking->settings_id) {
             abort(403);
         }
 

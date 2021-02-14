@@ -39,7 +39,7 @@ class BookingConfirmation extends Mailable
 
         return $this
             ->subject('Bokningsbekräftelse')
-            ->from(config('mail.from.address'), $this->booking->user->settings->congregation->name)
+            ->from(config('mail.from.address'), $this->booking->settings->congregation->name)
             ->replyTo($this->booking->user->email, $this->booking->user->name)
             ->markdown('emails.booking.confirmation');
     }
