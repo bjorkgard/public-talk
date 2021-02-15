@@ -17,7 +17,7 @@ class CreateChairmenTable extends Migration
 
         Schema::create('chairmen', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('settings_id')->constrained()->cascadeOnDelete();
             $table->string('name', 255);
             $table->string('email', 255);
             $table->string('phone', 255);

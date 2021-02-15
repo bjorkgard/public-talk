@@ -32,10 +32,10 @@ class ChairmanMail extends Command
     public function handle()
     {
         $nextWeek = Carbon::now()->addDays(7)->format('Y-m-d');
-        $bookings = Booking::where('date', $nextWeek)->with('user', 'chairman')->get();
+        $bookings = Booking::where('date', $nextWeek)->with('settings', 'chairman')->get();
 
         foreach ($bookings as $booking) {
-            if ($booking->speaker->email && $booking->user->settings->notifications->chairman) {
+            if ($booking->speaker->email && $booking->settings->notifications->chairman) {
                 Mail::to($booking->chairman->email, $booking->chairman->name)->queue(new BookingChairman($booking));
             }
         }

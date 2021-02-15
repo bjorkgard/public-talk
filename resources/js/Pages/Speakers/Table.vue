@@ -1,9 +1,9 @@
 <template>
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <nav
-                    class="bg-white px-4 py-3 flex items-center justify-end border-t border-gray-200 sm:px-6"
+                    class="flex items-center justify-end px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
                 >
                     <SearchInput :value="search" @input="searchSpeakers" />
                 </nav>
@@ -11,7 +11,7 @@
                     <thead>
                         <tr>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Efternamn
                                 <inertia-link
@@ -28,7 +28,7 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Förnamn
                                 <inertia-link
@@ -45,7 +45,7 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Församling
                                 <inertia-link
@@ -62,15 +62,23 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Seanast
                             </th>
-                            <th class="px-6 py-3 bg-gray-50 text-right">
-                                <span title="Lägg till en ny talare">
+                            <th class="px-6 py-3 text-right bg-gray-50">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'booker',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Lägg till en ny talare"
+                                >
                                     <Icons
                                         name="plus"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="addSpeaker()"
                                     />
                                 </span>
@@ -84,53 +92,77 @@
                             :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
                         >
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900"
+                                class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap"
                             >
                                 {{ row.lastname }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.firstname }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.congregation }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.last_booking ? row.last_booking.date : '' }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                                class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
                             >
-                                <span title="Boka talaren">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'booker',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Boka talaren"
+                                >
                                     <Icons
                                         name="book"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="bookSpeaker(row.id)"
                                     />
                                 </span>
                                 <span title="visa talarens föreläsningar">
                                     <Icons
                                         name="document"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="showTalksForSpeaker(row.id)"
                                     />
                                 </span>
-                                <span title="Redigera talare">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'booker',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Redigera talare"
+                                >
                                     <Icons
                                         name="edit"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="editSpeaker(row)"
                                     />
                                 </span>
-                                <span title="Radera talare">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'booker',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Radera talare"
+                                >
                                     <Icons
                                         name="delete"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="confirmSpeakerDeletion(row.id)"
                                     />
                                 </span>
@@ -139,7 +171,7 @@
                     </tbody>
                 </table>
                 <nav
-                    class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+                    class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
                 >
                     <div class="hidden sm:block">
                         <p class="text-sm leading-5 text-gray-700">
@@ -152,7 +184,7 @@
                             talare
                         </p>
                     </div>
-                    <div class="flex-1 flex justify-between sm:justify-end">
+                    <div class="flex justify-between flex-1 sm:justify-end">
                         <ButtonLink :link="speakers.prev_page_url">
                             Föregående
                         </ButtonLink>

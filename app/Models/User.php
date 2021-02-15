@@ -28,6 +28,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'phone',
         'password',
+        'role',
+        'settings_id'
     ];
 
     /**
@@ -67,21 +69,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function settings()
     {
-        return $this->hasOne(\App\Models\Settings::class);
+        return $this->belongsTo(\App\Models\Settings::class);
     }
 
-    public function speakers()
-    {
-        return $this->hasMany(\App\Models\Speaker::class);
-    }
-
-    public function bookings()
+    public function myBookings()
     {
         return $this->hasMany(\App\Models\Booking::class);
     }
 
+    public function speakers()
+    {
+        return $this->hasManyThrough(\App\Models\Speaker::class, \App\Models\Settings::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasManyThrough(\App\Models\Booking::class, \App\Models\Settings::class);
+    }
+
     public function chairmen()
     {
-        return $this->hasMany(\App\Models\Chairman::class);
+        return $this->hasManyThrough(\App\Models\Chairman::class, \App\Models\Settings::class);
     }
 }

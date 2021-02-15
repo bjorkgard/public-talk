@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
-class ChairmanUpdateRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,7 @@ class ChairmanUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->settings->id == $this->route('chairman')->settings_id;
+        return true;
     }
 
     /**
@@ -26,8 +28,22 @@ class ChairmanUpdateRequest extends FormRequest
         return [
             'settings_id' => ['required', 'integer', 'exists:settings,id'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string']
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'password' => Hash::make(Str::uuid()),
+        ]);
     }
 }

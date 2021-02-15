@@ -172,7 +172,8 @@ return [
         'time' => 'tid',
         'grade' => 'betyg',
         'comments' => 'kommentarer',
-        'greeting' => 'hälsning'
+        'greeting' => 'hälsning',
+        'role' => 'roll'
      ],
 
 ];

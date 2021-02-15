@@ -14,8 +14,7 @@ class SettingsExtraRequest extends FormRequest
      */
     public function authorize()
     {
-        $settings = Settings::find($this->route('setting'));
-        return $this->user()->id == $settings->user_id;
+        return $this->user()->settings->id == $this->route('setting');
     }
 
     /**

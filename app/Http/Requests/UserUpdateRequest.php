@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChairmanUpdateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class ChairmanUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->settings->id == $this->route('chairman')->settings_id;
+        return $this->user()->settings->id == $this->user->settings_id;
     }
 
     /**
@@ -26,8 +26,9 @@ class ChairmanUpdateRequest extends FormRequest
         return [
             'settings_id' => ['required', 'integer', 'exists:settings,id'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,'.$this->user->id],
             'phone' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'string', 'max:255'],
         ];
     }
 }

@@ -36,7 +36,7 @@ class SendThanksReminder extends Mailable
     {
         return $this
             ->subject('Påminnelse om att tacka talare')
-            ->from(config('mail.from.address'), $this->booking->user->settings->congregation->name)
+            ->from(config('mail.from.address'), $this->booking->settings->congregation->name)
             ->markdown('emails.user.thanks');
     }
 }

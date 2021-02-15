@@ -13,7 +13,7 @@ class BookingCommentRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->id == $this->route('booking')->user_id;
+        return $this->user()->settings->id == $this->route('booking')->settings_id;
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Scopes\UserScope;
+use App\Scopes\SettingsScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +29,7 @@ class Speaker extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'settings_id',
         'lastname',
         'firstname',
         'congregation',
@@ -44,7 +44,7 @@ class Speaker extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope(new UserScope);
+        static::addGlobalScope(new SettingsScope);
     }
 
     public function getFullNameAttribute()
@@ -60,9 +60,9 @@ class Speaker extends Model
     /**
      * RELATIONSHIPS
      */
-    public function user()
+    public function settings()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\Models\Settings::class);
     }
 
     public function talks()

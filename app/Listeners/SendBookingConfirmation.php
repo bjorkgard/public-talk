@@ -42,6 +42,6 @@ class SendBookingConfirmation implements ShouldQueue
      */
     public function shouldQueue(BookingDone $event)
     {
-        return $event->booking->user->settings->notifications->confirmation;
+        return $event->booking->settings->notifications->confirmation;
     }
 }

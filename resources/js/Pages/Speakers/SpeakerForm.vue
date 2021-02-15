@@ -145,7 +145,7 @@ export default {
             form: this.$inertia.form(
                 {
                     id: '',
-                    user_id: this.$page.props.auth.user.id,
+                    settings_id: this.$page.props.user.settings.id,
                     firstname: '',
                     lastname: '',
                     congregation: '',

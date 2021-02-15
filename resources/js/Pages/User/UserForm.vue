@@ -1,23 +1,21 @@
 <template>
     <JetDialogModal :show="show" @close="closeModal">
-        <template #title> Ordförande </template>
+        <template #title> Användare </template>
 
         <template #content>
             <div class="grid grid-cols-6 gap-6">
-                <!-- Name -->
-                <div class="col-span-6 sm:col-span-6">
+                <div class="col-span-6 sm:col-span-3">
                     <JetLabel for="name" value="Namn" />
                     <JetInput
                         id="name"
                         v-model="form.name"
                         :error="form.errors.name"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                     />
                     <JetInputError :message="form.errors.name" class="mt-2" />
                 </div>
 
-                <!-- Email -->
                 <div class="col-span-6 sm:col-span-3">
                     <JetLabel for="email" value="E-postadress" />
                     <JetInput
@@ -25,12 +23,11 @@
                         v-model="form.email"
                         :error="form.errors.email"
                         type="email"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                     />
                     <JetInputError :message="form.errors.email" class="mt-2" />
                 </div>
 
-                <!-- Phone -->
                 <div class="col-span-6 sm:col-span-3">
                     <JetLabel for="phone" value="Telefon" />
                     <JetInput
@@ -38,9 +35,22 @@
                         v-model="form.phone"
                         :error="form.errors.phone"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                     />
                     <JetInputError :message="form.errors.phone" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-3">
+                    <JetLabel for="role" value="Roll" />
+                    <v-select
+                        id="role"
+                        v-model="form.role"
+                        :options="options"
+                        :reduce="(option) => option.code"
+                        label="label"
+                        class="rounded-md shadow-sm style-chooser form-input"
+                    />
+                    <JetInputError :message="form.errors.role" class="mt-2" />
                 </div>
             </div>
         </template>
@@ -52,7 +62,7 @@
                 class="ml-2"
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
-                @click.native="saveChairman"
+                @click.native="saveUser"
             >
                 Spara
             </JetButton>
@@ -82,20 +92,26 @@ export default {
             type: Boolean,
             default: false
         },
-        chairman: {
+        user: {
             type: Object,
             default: null
         }
     },
     data() {
         return {
+            options: [
+                { label: 'Full åtkomst', code: 'owner' },
+                { label: 'Administrator', code: 'admin' },
+                { label: 'Kan boka', code: 'booker' },
+                { label: 'Kan enbart se', code: 'viewer' }
+            ],
             form: this.$inertia.form(
                 {
-                    id: '',
                     settings_id: this.$page.props.user.settings.id,
                     name: '',
                     email: '',
-                    phone: ''
+                    phone: '',
+                    role: ''
                 },
                 {
                     resetOnSuccess: true
@@ -104,7 +120,7 @@ export default {
         }
     },
     watch: {
-        chairman: {
+        user: {
             immediate: true,
             handler(val) {
                 if (val) {
@@ -112,11 +128,13 @@ export default {
                     this.form.name = val.name
                     this.form.email = val.email
                     this.form.phone = val.phone
+                    this.form.role = val.role
                 } else {
                     this.form.id = ''
                     this.form.name = ''
                     this.form.email = ''
                     this.form.phone = ''
+                    this.form.role = ''
                 }
             }
         }
@@ -125,19 +143,20 @@ export default {
         closeModal() {
             this.$emit('close')
         },
-        saveChairman() {
+        saveUser() {
             let self = this
             if (this.form.id) {
-                this.form.put(`/chairmen/${this.form.id}`, {
+                this.form.put(`/users/${this.form.id}`, {
                     onSuccess() {
+                        self.form.reset()
                         self.closeModal()
                     }
                 })
             } else {
-                this.form.post(`/chairmen`, {
+                this.form.post('/users', {
                     onSuccess() {
-                        self.closeModal()
                         self.form.reset()
+                        self.closeModal()
                     }
                 })
             }

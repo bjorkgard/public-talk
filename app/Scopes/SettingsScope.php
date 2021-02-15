@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Support\Facades\Auth;
 
-class UserScope implements Scope
+class SettingsScope implements Scope
 {
   /**
    * Apply the scope to a given Eloquent query builder.
@@ -19,7 +19,7 @@ class UserScope implements Scope
   public function apply(Builder $builder, Model $model)
   {
     if (Auth::user()) {
-      $builder->where('user_id', '=', Auth::user()->id);
+      $builder->where('settings_id', '=', Auth::user()->settings->id);
     }
   }
 }

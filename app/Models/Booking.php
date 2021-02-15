@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Scopes\UserScope;
+use App\Scopes\SettingsScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +17,7 @@ class Booking extends Model
      */
     protected $fillable = [
         'user_id',
+        'settings_id',
         'speaker_id',
         'talk_id',
         'chairman_id',
@@ -32,7 +33,7 @@ class Booking extends Model
         'identifier'
     ];
 
-    protected $with = ['speaker', 'talk', 'chairman'];
+    protected $with = ['speaker', 'talk', 'chairman', 'settings', 'user'];
 
     /**
      * The attributes that should be cast to native types.
@@ -46,12 +47,12 @@ class Booking extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope(new UserScope);
+        static::addGlobalScope(new SettingsScope);
     }
 
-    public function user()
+    public function settings()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\Models\Settings::class);
     }
 
     public function speaker()
@@ -67,5 +68,10 @@ class Booking extends Model
     public function chairman()
     {
         return $this->belongsTo(\App\Models\Chairman::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
     }
 }
