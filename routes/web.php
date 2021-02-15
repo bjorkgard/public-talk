@@ -59,4 +59,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::get('/bookings/{identifier}', [ExternalBookingController::class, 'index'])->name('bookings.thanks');
 Route::post('/bookings/greeting/{booking}', [BookingsController::class, 'greeting'])->name('bookings.greeting');
-Route::get('/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password.reset');
+Route::get('/reset-password', [AuthenticationController::class, 'resetPassword']);
