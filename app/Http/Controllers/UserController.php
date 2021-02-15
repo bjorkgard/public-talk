@@ -50,13 +50,9 @@ class UserController extends Controller
     }
 
     public function invite(Request $request, User $user) {
-        ray()->newScreen();
-        ray()->queries();
         if ($user) {
             $password_broker = app(PasswordBroker::class);
             $token = $password_broker->createToken($user);
-
-            ray($token);
 
             Mail::to($user)->send(new UserInvite(Auth::user(), url('/') . '/reset-password?token=' . $token . '&email=' . $user->email));
 
