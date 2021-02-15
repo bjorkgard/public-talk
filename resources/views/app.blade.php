@@ -30,7 +30,7 @@
 
         <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="bjorkgard" data-description="" data-message="Tack för besöket! Om du vill kan du bjuda på en kaffe." data-color="#5F7FFF" data-position="" data-x_margin="18" data-y_margin="18"></script>
     </head>
-    <body class="font-sans antialiased debug-screens">
+    <body class="font-sans antialiased {{app()->environment('local') ? 'debug-screens' : ''}}">
         @inertia
     </body>
 </html>
