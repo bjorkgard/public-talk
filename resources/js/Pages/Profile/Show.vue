@@ -32,7 +32,7 @@
                 <template
                     v-if="
                         $page.props.jetstream.hasAccountDeletionFeatures &&
-                        $page.props.user.role !== 'viewer'
+                        userHelpers.hasAccess('admin', $page.props.user.role)
                     "
                 >
                     <JetSectionBorder />

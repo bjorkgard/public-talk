@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ChairmanController;
 use App\Http\Controllers\ExternalBookingController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SettingsExtraController;
 use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\TalkController;
+use App\Http\Controllers\UserController;
 use App\Models\Talk;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -51,7 +53,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::resource('chairmen', ChairmanController::class)->except(['create', 'edit', 'show']);
+    Route::resource('/users', UserController::class)->except(['create', 'edit', 'show']);
+    Route::post('invite-user/{user}', [UserController::class, 'invite']);
 });
 
 Route::get('/bookings/{identifier}', [ExternalBookingController::class, 'index'])->name('bookings.thanks');
 Route::post('/bookings/greeting/{booking}', [BookingsController::class, 'greeting'])->name('bookings.greeting');
+Route::get('/reset-password', [AuthenticationController::class, 'resetPassword'])->name('password.reset');

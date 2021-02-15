@@ -42,6 +42,24 @@
                                     Ordförande
                                 </JetNavLink>
                                 <JetNavLink
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'admin',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    href="/users"
+                                    :active="$page.url.includes('users')"
+                                >
+                                    Användare
+                                </JetNavLink>
+                                <JetNavLink
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'admin',
+                                            $page.props.user.role
+                                        )
+                                    "
                                     href="/settings"
                                     :active="$page.url == '/settings'"
                                 >
@@ -230,6 +248,18 @@
                                 Ordförande
                             </JetResponsiveNavLink>
                             <JetResponsiveNavLink
+                                v-if="
+                                    userHelpers.hasAccess('admin', $page.props.user.role)
+                                "
+                                href="/users"
+                                :active="$page.url.includes('users')"
+                            >
+                                Användare
+                            </JetResponsiveNavLink>
+                            <JetResponsiveNavLink
+                                v-if="
+                                    userHelpers.hasAccess('admin', $page.props.user.role)
+                                "
                                 href="/settings"
                                 :active="$page.url == '/settings'"
                             >

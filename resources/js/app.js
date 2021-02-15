@@ -7,6 +7,7 @@ import VueMeta from 'vue-meta'
 import PortalVue from 'portal-vue'
 import { InertiaProgress } from '@inertiajs/progress'
 import vSelect from 'vue-select'
+import helpers from './helpers'
 
 InertiaProgress.init()
 
@@ -14,7 +15,23 @@ Vue.mixin({ methods: { route } })
 Vue.use(InertiaPlugin)
 Vue.use(PortalVue)
 Vue.use(VueMeta, { refreshOnceOnNavigation: true })
+Vue.use(helpers)
 Vue.component('VSelect', vSelect)
+
+Vue.filter('translateRole', (role) => {
+    switch (role) {
+        case 'owner':
+            return 'Full åtkomst'
+        case 'admin':
+            return 'Administrator'
+        case 'booker':
+            return 'Kan boka'
+        case 'viewer':
+            return 'Kan enbart se'
+    }
+
+    return 'Annat'
+})
 
 const app = document.getElementById('app')
 
