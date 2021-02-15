@@ -10,8 +10,9 @@ const hasAccess = (acceptedRole, userRole) => {
     const roles = {
         owner: 30,
         admin: 20,
-        view: 10,
-        other: 0
+        booker: 10,
+        view: 0,
+        other: -1
     }
 
     return roles[userRole] >= roles[acceptedRole]

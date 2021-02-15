@@ -85,7 +85,7 @@
                             <span
                                 v-if="
                                     !row.deleted_at &&
-                                    userHelpers.hasAccess('admin', $page.props.user.role)
+                                    userHelpers.hasAccess('booker', $page.props.user.role)
                                 "
                                 title="Boka föreläsning"
                             >

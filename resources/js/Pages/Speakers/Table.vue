@@ -70,7 +70,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         )
                                     "
@@ -117,7 +117,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         )
                                     "
@@ -139,7 +139,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         )
                                     "
@@ -154,7 +154,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         )
                                     "

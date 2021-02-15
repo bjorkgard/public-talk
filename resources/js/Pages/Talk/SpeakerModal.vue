@@ -70,7 +70,7 @@
                         >
                             <span
                                 v-if="
-                                    userHelpers.hasAccess('admin', $page.props.user.role)
+                                    userHelpers.hasAccess('booker', $page.props.user.role)
                                 "
                                 title="Boka föreläsning"
                             >
@@ -127,7 +127,7 @@ export default {
     watch: {
         show: {
             immediate: true,
-            handler(val, oldVal) {
+            handler(val) {
                 if (val) {
                     this.getSpeakers()
                 }

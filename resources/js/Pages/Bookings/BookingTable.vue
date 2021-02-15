@@ -34,7 +34,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         )
                                     "
@@ -120,7 +120,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         ) &&
                                         booking.id &&
@@ -139,7 +139,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         ) &&
                                         booking.id &&
@@ -158,7 +158,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         ) &&
                                         booking.id &&
@@ -175,7 +175,7 @@
                                 <span
                                     v-if="
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         ) &&
                                         booking.id &&
@@ -193,7 +193,7 @@
                                     v-if="
                                         !booking.id &&
                                         userHelpers.hasAccess(
-                                            'admin',
+                                            'booker',
                                             $page.props.user.role
                                         )
                                     "
