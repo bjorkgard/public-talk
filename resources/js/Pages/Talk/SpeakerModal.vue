@@ -6,27 +6,27 @@
                 <thead>
                     <tr>
                         <th
-                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                         >
                             Namn
                         </th>
                         <th
-                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                         >
                             Församling
                         </th>
                         <th
-                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                         >
                             Telefon
                         </th>
                         <th
-                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                         >
                             Seanast
                         </th>
                         <th
-                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                         >
                             Betyg
                         </th>
@@ -40,38 +40,43 @@
                         :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
                     >
                         <td
-                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900"
+                            class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap"
                         >
                             {{ row.full_name }}
                         </td>
                         <td
-                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                         >
                             {{ row.congregation }}
                         </td>
                         <td
-                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                         >
                             {{ row.phone }}
                         </td>
                         <td
-                            class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 cursor-default"
+                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap cursor-default"
                         >
                             {{ row.bookings.length ? row.bookings[0].date : '' }}
                         </td>
-                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5">
+                        <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap">
                             <Grade
                                 v-if="row.bookings[0]"
                                 :grade="row.bookings.length ? row.bookings[0].grade : 0"
                             />
                         </td>
                         <td
-                            class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                            class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
                         >
-                            <span title="Boka föreläsning">
+                            <span
+                                v-if="
+                                    userHelpers.hasAccess('admin', $page.props.user.role)
+                                "
+                                title="Boka föreläsning"
+                            >
                                 <Icons
                                     name="book"
-                                    class="w-5 text-gray-500 hover:text-teal-500 cursor-pointer"
+                                    class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                     @click.native="book(row.id)"
                                 />
                             </span>

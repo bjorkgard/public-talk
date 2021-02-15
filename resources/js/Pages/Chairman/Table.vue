@@ -1,12 +1,12 @@
 <template>
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead>
                         <tr>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Namn
                                 <inertia-link
@@ -23,7 +23,7 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 E-postadress
                                 <inertia-link
@@ -40,7 +40,7 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Telefon
                                 <inertia-link
@@ -57,15 +57,23 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Seanast
                             </th>
-                            <th class="px-6 py-3 bg-gray-50 text-right">
-                                <span title="Lägg till en ny ordförande">
+                            <th class="px-6 py-3 text-right bg-gray-50">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'admin',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Lägg till en ny ordförande"
+                                >
                                     <Icons
                                         name="plus"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="addChairman()"
                                     />
                                 </span>
@@ -79,41 +87,57 @@
                             :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
                         >
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900"
+                                class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap"
                             >
                                 {{ row.name }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.email }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500"
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.phone }}
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500 cursor-default"
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap cursor-default"
                             >
                                 <span>
                                     {{ row.last_booking ? row.last_booking.date : '' }}
                                 </span>
                             </td>
                             <td
-                                class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium"
+                                class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
                             >
-                                <span title="Redigera ordförande">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'admin',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Redigera ordförande"
+                                >
                                     <Icons
                                         name="edit"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="editChairman(row)"
                                     />
                                 </span>
-                                <span title="Radera ordförande">
+                                <span
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'admin',
+                                            $page.props.user.role
+                                        )
+                                    "
+                                    title="Radera ordförande"
+                                >
                                     <Icons
                                         name="delete"
-                                        class="text-gray-500 hover:text-teal-500 cursor-pointer w-5"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
                                         @click.native="confirmChairmanDeletion(row.id)"
                                     />
                                 </span>
@@ -122,7 +146,7 @@
                     </tbody>
                 </table>
                 <nav
-                    class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6"
+                    class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
                 >
                     <div class="hidden sm:block">
                         <p
@@ -138,7 +162,7 @@
                             ordförande
                         </p>
                     </div>
-                    <div class="flex-1 flex justify-between sm:justify-end">
+                    <div class="flex justify-between flex-1 sm:justify-end">
                         <ButtonLink :link="chairmen.prev_page_url">
                             Föregående
                         </ButtonLink>
