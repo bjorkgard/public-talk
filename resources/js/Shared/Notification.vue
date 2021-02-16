@@ -3,26 +3,26 @@
         class="fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end"
     >
         <transition
-            enter-active-class="transition ease-out duration-300 transform"
-            enter-class="ranslate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+            enter-active-class="transition duration-300 ease-out transform"
+            enter-class="opacity-0 ranslate-y-2 sm:translate-y-0 sm:translate-x-2"
             enter-to-class="translate-y-0 opacity-100 sm:translate-x-0"
-            leave-active-class="transition ease-in duration-100"
+            leave-active-class="transition duration-100 ease-in"
             leave-class="opacity-100"
             leave-to-class="opacity-0"
         >
             <div
                 v-show="show"
                 :class="message.type === 'success' ? 'bg-green-100' : 'bg-red-100'"
-                class="max-w-sm w-full shadow-lg rounded-lg pointer-events-auto"
+                class="w-full max-w-sm rounded-lg shadow-lg pointer-events-auto"
             >
-                <div class="rounded-lg shadow-xs overflow-hidden">
+                <div class="overflow-hidden rounded-lg shadow-xs">
                     <div class="p-4">
                         <div class="flex items-start">
                             <div class="flex-shrink-0">
                                 <!-- Heroicon name: check-circle -->
                                 <svg
                                     v-if="message.type === 'success'"
-                                    class="h-6 w-6 text-green-400"
+                                    class="w-6 h-6 text-green-400"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -37,7 +37,7 @@
 
                                 <svg
                                     v-else
-                                    class="h-6 w-6 text-red-400"
+                                    class="w-6 h-6 text-red-400"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
@@ -51,18 +51,18 @@
                                 </svg>
                             </div>
                             <div class="ml-3 w-0 flex-1 pt-0.5">
-                                <p class="text-sm leading-5 font-medium text-gray-900">
+                                <p class="text-sm font-medium leading-5 text-gray-900">
                                     {{ message.text }}
                                 </p>
                             </div>
-                            <div class="ml-4 flex-shrink-0 flex">
+                            <div class="flex flex-shrink-0 ml-4">
                                 <button
-                                    class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150"
+                                    class="inline-flex text-gray-400 transition duration-150 ease-in-out focus:outline-none focus:text-gray-500"
                                     @click.prevent="hideMessage"
                                 >
                                     <!-- Heroicon name: x -->
                                     <svg
-                                        class="h-5 w-5"
+                                        class="w-5 h-5"
                                         viewBox="0 0 20 20"
                                         fill="currentColor"
                                     >
@@ -93,7 +93,6 @@ export default {
     watch: {
         '$page.props.flash': {
             handler() {
-                console.log('flashing....')
                 if (this.$page.props.flash.success) {
                     this.message.type = 'success'
                     this.message.text = this.$page.props.flash.success

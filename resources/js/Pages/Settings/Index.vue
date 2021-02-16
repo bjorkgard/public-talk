@@ -1,13 +1,14 @@
 <template>
     <AppLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Inställningar
             </h2>
+            <HelpButton category="settings" />
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <CongregationForm :settings="user.settings" />
 
                 <JetSectionBorder />
@@ -30,6 +31,7 @@ import CongregationForm from './CongregationForm'
 import MeetingForm from './MeetingForm'
 import NotificationsForm from './NotificationsForm'
 import ExtraForm from './ExtraForm'
+import HelpButton from '@Shared/HelpButton'
 
 export default {
     components: {
@@ -38,7 +40,8 @@ export default {
         CongregationForm,
         MeetingForm,
         NotificationsForm,
-        ExtraForm
+        ExtraForm,
+        HelpButton
     },
     props: {
         user: {

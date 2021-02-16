@@ -303,7 +303,9 @@
 
             <!-- Page Heading -->
             <header v-if="$slots.header" class="bg-white shadow">
-                <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div
+                    class="flex justify-between px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8"
+                >
                     <slot name="header"></slot>
                 </div>
             </header>
@@ -316,6 +318,7 @@
             <!-- Modal Portal -->
             <portal-target name="modal" multiple> </portal-target>
 
+            <Help :show="showHelp" :category="category" @hide="showHelp = false" />
             <FlashMessage />
             <NavFooter />
         </div>
@@ -331,6 +334,7 @@ import JetNavLink from '@/Jetstream/NavLink'
 import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
 import FlashMessage from '@Shared/FlashMessage'
 import NavFooter from '@Shared/Footer'
+import Help from '@Shared/Help'
 
 export default {
     components: {
@@ -341,16 +345,26 @@ export default {
         JetNavLink,
         JetResponsiveNavLink,
         FlashMessage,
-        NavFooter
+        NavFooter,
+        Help
     },
 
     data() {
         return {
-            showingNavigationDropdown: false
+            showingNavigationDropdown: false,
+            showHelp: false,
+            category: ''
         }
+    },
+    mounted() {
+        this.$root.$on('help', this.activateHelp)
     },
 
     methods: {
+        activateHelp(category) {
+            this.showHelp = true
+            this.category = category
+        },
         logout() {
             this.$inertia.post('/logout')
         }
