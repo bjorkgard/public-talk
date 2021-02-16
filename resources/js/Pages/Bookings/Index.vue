@@ -1,15 +1,16 @@
 <template>
     <AppLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Bokningar</h2>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Bokningar</h2>
+            <HelpButton category="booking" />
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <BookingTable :bookings="bookings" class="mb-2" />
 
                 <div class="flex justify-between">
-                    <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                    <span class="relative z-0 inline-flex rounded-md shadow-sm">
                         <JetFlatButton
                             class="rounded-l-md"
                             @click.native="goDate(previousMonth)"
@@ -30,7 +31,7 @@
                         </JetSecondaryButton>
                     </span>
 
-                    <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                    <span class="relative z-0 inline-flex rounded-md shadow-sm">
                         <JetFlatButton
                             class="rounded-l-md"
                             @click.native="goDate(nextWeek)"
@@ -55,13 +56,15 @@ import AppLayout from '@/Layouts/AppLayout'
 import BookingTable from './BookingTable'
 import JetFlatButton from '@/Jetstream/FlatButton'
 import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+import HelpButton from '@Shared/HelpButton'
 
 export default {
     components: {
         AppLayout,
         BookingTable,
         JetFlatButton,
-        JetSecondaryButton
+        JetSecondaryButton,
+        HelpButton
     },
     props: ['bookings', 'previousWeek', 'previousMonth', 'nextWeek', 'nextMonth'],
     methods: {

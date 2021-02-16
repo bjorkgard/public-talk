@@ -15,7 +15,7 @@
                                 id="confirmation"
                                 v-model="form.confirmation"
                                 type="checkbox"
-                                class="form-checkbox h-4 w-4 text-teal-600 transition duration-150 ease-in-out"
+                                class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
                             />
                         </div>
                         <div class="ml-3 text-sm leading-5">
@@ -35,7 +35,7 @@
                                     id="reminder"
                                     v-model="form.reminder"
                                     type="checkbox"
-                                    class="form-checkbox h-4 w-4 text-teal-600 transition duration-150 ease-in-out"
+                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
                                 />
                             </div>
                             <div class="ml-3 text-sm leading-5">
@@ -55,7 +55,7 @@
                                     id="thanks"
                                     v-model="form.thanks"
                                     type="checkbox"
-                                    class="form-checkbox h-4 w-4 text-teal-600 transition duration-150 ease-in-out"
+                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
                                 />
                             </div>
                             <div class="ml-3 text-sm leading-5">
@@ -63,8 +63,9 @@
                                     Tack
                                 </label>
                                 <p class="text-gray-500">
-                                    Skicka ett tack till talaren (du kommer att få ett
-                                    meddelande om att skriva en personlig hälsning).
+                                    Skicka ett tack till talaren (användaren som bokade in
+                                    föreläsningen kommer först att få ett meddelande om
+                                    att skriva en personlig hälsning).
                                 </p>
                             </div>
                         </div>
@@ -76,7 +77,7 @@
                                     id="chairman"
                                     v-model="form.chairman"
                                     type="checkbox"
-                                    class="form-checkbox h-4 w-4 text-teal-600 transition duration-150 ease-in-out"
+                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
                                 />
                             </div>
                             <div class="ml-3 text-sm leading-5">
