@@ -43,7 +43,7 @@
                                             </h2>
                                             <div class="flex items-center ml-3 h-7">
                                                 <button
-                                                    class="text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    class="text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
                                                     @click="$emit('hide')"
                                                 >
                                                     <span class="sr-only">Stäng</span>
