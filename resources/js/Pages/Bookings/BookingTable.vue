@@ -112,6 +112,16 @@
                                 class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
                             >
                                 <span
+                                    v-if="
+                                        booking &&
+                                        (booking.exception ||
+                                            (booking.speaker && !booking.speaker.email))
+                                    "
+                                    title="E-postadress saknas så ingen bekräftelse eller påminnelse kan skickas"
+                                >
+                                    <Icons name="exception" class="w-5 text-orange-500" />
+                                </span>
+                                <span
                                     v-if="booking.talk && booking.talk.deleted_at"
                                     title="Föreläsningen är raderad på jw.org"
                                 >
