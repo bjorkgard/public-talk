@@ -10,6 +10,7 @@ Om du behöver kontakta oss så finns kontaktuppgifterna längst ner i mailet.
 | | |
 |-|:-|
 |__Datum__|{{$booking->date}}|
+|__Tid__|{{substr($booking->time, 0, strrpos( $booking->time, ':'))}}|
 |__Sång__|{{$booking->song}}|
 |__Föreläsning__|{{$booking->talk->full_theme}}|
 |__Församling__|{{$booking->user->settings->congregation->name}}|

@@ -8,6 +8,7 @@ Du har blivit utsedd till ordförande för följande föreläsning.
 | | |
 |-|:-|
 |__Datum__|{{$booking->date}}|
+|__Tid__|{{substr($booking->time, 0, strrpos( $booking->time, ':'))}}|
 |__Sång__|{{$booking->song}}|
 |__Föreläsning__|{{$booking->talk->theme}}|
 |__Talare__|{{$booking->speaker->firstname}} {{$booking->speaker->lastname}}|
