@@ -18,7 +18,8 @@ module.exports = {
                 black: '#000',
                 gray: colors.coolGray,
                 red: colors.red,
-                teal: colors.teal
+                teal: colors.teal,
+                orange: colors.orange
             },
             fontFamily: {
                 //sans: ['Nunito', ...defaultTheme.fontFamily.sans],
