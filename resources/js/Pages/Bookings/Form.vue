@@ -1,14 +1,14 @@
 <template>
     <AppLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Bokningar: {{ form.id ? 'Uppdatera' : 'Skapa' }}
             </h2>
         </template>
         <div class="py-12 pb-24">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <JetFormSection @submitted="saveBooking">
-                    <template #title> Standard bokning </template>
+                    <template #title> Bokning av föreläsning </template>
 
                     <template #description> Fyll i uppgifterna om bokningen</template>
 
@@ -26,7 +26,7 @@
                                     id="date"
                                     v-model="form.date"
                                     type="text"
-                                    class="mt-1 block w-full"
+                                    class="block w-full mt-1"
                                 />
                             </VueTailwindPicker>
                             <JetInputError :message="form.errors.date" class="mt-2" />
@@ -39,7 +39,7 @@
                                 v-model="form.time"
                                 :error="form.errors.time"
                                 type="time"
-                                class="mt-1 block w-full"
+                                class="block w-full mt-1"
                             />
                             <JetInputError :message="form.errors.time" class="mt-2" />
                         </div>
@@ -51,7 +51,7 @@
                                 v-model="form.song"
                                 :error="form.errors.song"
                                 type="text"
-                                class="mt-1 block w-full"
+                                class="block w-full mt-1"
                             />
                             <JetInputError :message="form.errors.song" class="mt-2" />
                         </div>
@@ -64,7 +64,7 @@
                                 label="full_theme"
                                 :options="availableTalks"
                                 :reduce="(talk) => talk.id"
-                                class="style-chooser form-input rounded-md shadow-sm"
+                                class="rounded-md shadow-sm style-chooser form-input"
                             />
                             <JetInputError :message="form.errors.talk_id" class="mt-2" />
                         </div>
@@ -77,7 +77,7 @@
                                 label="full_name"
                                 :options="availableSpeakers"
                                 :reduce="(speaker) => speaker.id"
-                                class="style-chooser form-input rounded-md shadow-sm"
+                                class="rounded-md shadow-sm style-chooser form-input"
                             />
                             <JetInputError
                                 :message="form.errors.speaker_id"
@@ -85,13 +85,13 @@
                             />
                         </div>
 
-                        <div class="col-span-6 flex items-start">
+                        <div class="flex items-start col-span-6">
                             <div class="flex items-center h-5">
                                 <input
                                     id="exception"
                                     v-model="form.exception"
                                     type="checkbox"
-                                    class="form-checkbox h-4 w-4 text-teal-600 transition duration-150 ease-in-out"
+                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
                                 />
                             </div>
                             <div class="ml-3 text-sm leading-5">
@@ -114,7 +114,7 @@
                                 v-model="form.custom_talk"
                                 :error="form.errors.custom_talk"
                                 type="text"
-                                class="mt-1 block w-full"
+                                class="block w-full mt-1"
                             />
                             <JetInputError
                                 :message="form.errors.custom_talk"
@@ -129,7 +129,7 @@
                                 v-model="form.custom_speaker"
                                 :error="form.errors.custom_speaker"
                                 type="text"
-                                class="mt-1 block w-full"
+                                class="block w-full mt-1"
                             />
                             <JetInputError
                                 :message="form.errors.custom_speaker"
@@ -146,7 +146,7 @@
                                 label="name"
                                 :options="chairmen"
                                 :reduce="(chairman) => chairman.id"
-                                class="style-chooser form-input rounded-md shadow-sm"
+                                class="rounded-md shadow-sm style-chooser form-input"
                             />
                             <JetInputError
                                 :message="form.errors.chairman_id"
