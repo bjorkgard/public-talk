@@ -17,6 +17,8 @@ class AddRoleToUsers extends Migration
             $table->string('role')
                     ->after('password')
                     ->default('owner');
+            
+            $table->foreignId('settings_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->after('id');
         });
     }
 
@@ -29,6 +31,7 @@ class AddRoleToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role');
+            $table->dropColumn('settings_id');
         });
     }
 }
