@@ -36,6 +36,12 @@
                                     Föreläsningar
                                 </JetNavLink>
                                 <JetNavLink
+                                    v-if="
+                                        userHelpers.hasAccess(
+                                            'admin',
+                                            $page.props.user.role
+                                        )
+                                    "
                                     href="/chairmen"
                                     :active="$page.url.includes('chairmen')"
                                 >
@@ -248,6 +254,9 @@
                                 Föreläsningar
                             </JetResponsiveNavLink>
                             <JetResponsiveNavLink
+                                v-if="
+                                    userHelpers.hasAccess('admin', $page.props.user.role)
+                                "
                                 href="/chairmen"
                                 :active="$page.url.includes('chairmen')"
                             >
