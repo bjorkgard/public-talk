@@ -52,11 +52,15 @@
                                 :error="form.errors.song"
                                 type="text"
                                 class="block w-full mt-1"
+                                :disabled="form.no_meeting"
                             />
                             <JetInputError :message="form.errors.song" class="mt-2" />
                         </div>
                         <!-- Talks -->
-                        <div v-if="!form.exception" class="col-span-6">
+                        <div
+                            v-if="!form.exception && !form.no_meeting"
+                            class="col-span-6"
+                        >
                             <JetLabel for="talk" value="Föreläsning" />
                             <v-select
                                 id="talk"
@@ -69,7 +73,10 @@
                             <JetInputError :message="form.errors.talk_id" class="mt-2" />
                         </div>
                         <!-- Speakers -->
-                        <div v-if="!form.exception" class="col-span-6">
+                        <div
+                            v-if="!form.exception && !form.no_meeting"
+                            class="col-span-6"
+                        >
                             <JetLabel for="speaker" value="Talare" />
                             <v-select
                                 id="speaker"
@@ -85,7 +92,7 @@
                             />
                         </div>
 
-                        <div class="flex items-start col-span-6">
+                        <div v-if="!form.no_meeting" class="flex items-start col-span-6">
                             <div class="flex items-center h-5">
                                 <input
                                     id="exception"
@@ -107,7 +114,7 @@
                         </div>
 
                         <!-- Exception talk -->
-                        <div v-if="form.exception" class="col-span-6">
+                        <div v-if="form.exception && !form.no_meeting" class="col-span-6">
                             <JetLabel for="customTalk" value="Föreläsning" />
                             <JetInput
                                 id="customTalk"
@@ -122,7 +129,7 @@
                             />
                         </div>
                         <!-- Exception speaker -->
-                        <div v-if="form.exception" class="col-span-6">
+                        <div v-if="form.exception && !form.no_meeting" class="col-span-6">
                             <JetLabel for="customSpeaker" value="Talare" />
                             <JetInput
                                 id="customSpeaker"
@@ -138,7 +145,7 @@
                         </div>
 
                         <!-- Chairmen -->
-                        <div class="col-span-6">
+                        <div v-if="!form.no_meeting" class="col-span-6">
                             <JetLabel for="chairman" value="Ordförande" />
                             <v-select
                                 id="chairman"
@@ -152,6 +159,39 @@
                                 :message="form.errors.chairman_id"
                                 class="mt-2"
                             />
+                        </div>
+
+                        <div class="flex items-start col-span-6">
+                            <div class="flex items-center h-5">
+                                <input
+                                    id="no_meeting"
+                                    v-model="form.no_meeting"
+                                    type="checkbox"
+                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
+                                    @input="clearForm"
+                                />
+                            </div>
+                            <div class="ml-3 text-sm leading-5">
+                                <label for="no_meeting" class="font-medium text-gray-700">
+                                    Ingen föreläsning
+                                </label>
+                                <p class="text-gray-500">
+                                    Klicka i den här rutan om församlingen inte har någon
+                                    offentlig föreläsning den här helgen, tex vid
+                                    sammankomst eller minneshögtid
+                                </p>
+                            </div>
+                        </div>
+                        <div v-if="form.no_meeting" class="col-span-6">
+                            <JetLabel for="comments" value="Kommentar" />
+                            <JetInput
+                                id="comments"
+                                v-model="form.comments"
+                                :error="form.errors.comments"
+                                type="text"
+                                class="block w-full mt-1"
+                            />
+                            <JetInputError :message="form.errors.comments" class="mt-2" />
                         </div>
                     </template>
 
@@ -235,7 +275,9 @@ export default {
                     chairman_id: this.booking.chairman_id,
                     exception: this.booking.exception,
                     custom_talk: this.booking.custom_talk,
-                    custom_speaker: this.booking.custom_speaker
+                    custom_speaker: this.booking.custom_speaker,
+                    no_meeting: this.booking.no_meeting,
+                    comments: this.booking.comments
                 },
                 {
                     resetOnSuccess: true
@@ -260,6 +302,13 @@ export default {
         }
     },
     methods: {
+        clearForm() {
+            this.form.talk_id = null
+            this.form.speaker_id = null
+            this.form.custom_talk = null
+            this.form.custom_speaker = null
+            this.form.exception = false
+        },
         goBack() {
             this.$inertia.visit('/bookings')
         },

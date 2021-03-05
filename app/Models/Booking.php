@@ -30,7 +30,8 @@ class Booking extends Model
         'comments',
         'grade',
         'thanked',
-        'identifier'
+        'identifier',
+        'no_meeting'
     ];
 
     protected $with = ['speaker', 'talk', 'chairman', 'settings', 'user'];
@@ -43,6 +44,7 @@ class Booking extends Model
     protected $casts = [
         'exception' => 'boolean',
         'thanked' => 'boolean',
+        'no_meeting' => 'boolean',
     ];
 
     protected static function booted()
