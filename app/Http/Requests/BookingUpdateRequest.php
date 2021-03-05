@@ -34,7 +34,7 @@ class BookingUpdateRequest extends FormRequest
             
             'talk_id' => ['exclude_if:exception,true', 'exclude_if:no_meeting,true', 'required', 'integer', 'exists:talks,id'],
             'speaker_id' => ['exclude_if:exception,true', 'exclude_if:no_meeting,true', 'exclude_if:no_meeting,true', 'required', 'integer', 'exists:speakers,id'],
-            'chairman_id' => ['exclude_if:no_meeting,true', 'required', 'integer', 'exists:chairmen,id'],
+            'chairman_id' => ['nullable', 'integer', 'exists:chairmen,id'],
 
             // comments only if no_meeting
             'comments' => ['required_if:no_meeting,true', 'string', 'nullable', 'max:255'],

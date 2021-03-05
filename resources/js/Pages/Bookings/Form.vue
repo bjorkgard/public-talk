@@ -145,7 +145,13 @@
                         </div>
 
                         <!-- Chairmen -->
-                        <div v-if="!form.no_meeting" class="col-span-6">
+                        <div
+                            v-if="
+                                !form.no_meeting &&
+                                userHelpers.hasAccess('admin', $page.props.user.role)
+                            "
+                            class="col-span-6"
+                        >
                             <JetLabel for="chairman" value="Ordförande" />
                             <v-select
                                 id="chairman"
