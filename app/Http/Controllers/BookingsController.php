@@ -143,6 +143,8 @@ class BookingsController extends Controller
                 'exception' => $booking->exception,
                 'custom_talk' => $booking->custom_talk,
                 'custom_speaker' => $booking->custom_speaker,
+                'no_meeting' => $booking->no_meeting,
+                'comments' => $booking->comments,
             ],
             'speakers' => Speaker::all(),
             'talks' => Talk::with('speakers')->get(),

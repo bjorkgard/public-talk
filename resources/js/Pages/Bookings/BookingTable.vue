@@ -51,13 +51,24 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr v-for="booking in bookings" :key="booking.id">
-                            <td class="px-6 py-4 text-gray-900">
+                            <td
+                                class="px-6 py-4 text-gray-900"
+                                :class="{ 'bg-gray-200': booking.no_meeting }"
+                            >
                                 {{ booking.date }}
                             </td>
-                            <td class="px-6 py-4 text-gray-900">
+
+                            <td v-if="booking.no_meeting" colspan="4" class="bg-gray-200">
+                                {{ booking.comments }}
+                            </td>
+                            <td
+                                v-if="!booking.no_meeting"
+                                class="px-6 py-4 text-gray-900"
+                            >
                                 {{ booking.song || '&nbsp;' }}
                             </td>
                             <td
+                                v-if="!booking.no_meeting"
                                 class="px-6 py-4 whitespace-no-wrap"
                                 :class="{
                                     'line-through':
@@ -84,7 +95,10 @@
                                     }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap">
+                            <td
+                                v-if="!booking.no_meeting"
+                                class="px-6 py-4 whitespace-no-wrap"
+                            >
                                 <div class="leading-5 text-gray-900">
                                     {{
                                         booking.speaker
@@ -105,11 +119,15 @@
                                     }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-gray-900 whitespace-no-wrap">
+                            <td
+                                v-if="!booking.no_meeting"
+                                class="px-6 py-4 text-gray-900 whitespace-no-wrap"
+                            >
                                 {{ booking.chairman ? booking.chairman.name : '&nbsp;' }}
                             </td>
                             <td
                                 class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
+                                :class="{ 'bg-gray-200': booking.no_meeting }"
                             >
                                 <span
                                     v-if="
@@ -135,6 +153,7 @@
                                         ) &&
                                         booking.id &&
                                         !booking.exception &&
+                                        !booking.no_meeting &&
                                         !booking.upcoming &&
                                         !booking.thanked
                                     "
@@ -154,6 +173,7 @@
                                         ) &&
                                         booking.id &&
                                         !booking.exception &&
+                                        !booking.no_meeting &&
                                         !booking.upcoming &&
                                         (!booking.grade || !booking.comment)
                                     "
