@@ -22,7 +22,7 @@ class APIController extends Controller
                 ->leftJoin('chairmen', 'chairmen.id', '=', 'bookings.chairman_id')
                 ->leftJoin('talks', 'talks.id', '=', 'bookings.talk_id')
                 ->leftJoin('speakers', 'speakers.id', '=', 'bookings.speaker_id')
-                ->select('date', 'time', 'song', 'custom_talk', 'custom_speaker', 'chairmen.name as chairman', 'talks.theme as theme', 'speakers.firstname', 'speakers.lastname', 'speakers.congregation')
+                ->select('date', 'time', 'song', 'custom_talk', 'custom_speaker', 'no_meeting', 'bookings.comments as comments', 'chairmen.name as chairman', 'talks.theme as theme', 'speakers.firstname', 'speakers.lastname', 'speakers.congregation')
                 ->orderBy('bookings.date')
                 ->get();
 
