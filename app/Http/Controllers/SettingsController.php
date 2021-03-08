@@ -14,28 +14,18 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subscriptionPlans = $this->getSubcriptionPlans();
-
-        return Inertia::render('Settings/Index', ['subscriptionPlans' => $subscriptionPlans]);
-    }
-
-    private function getSubcriptionPlans() {
-        $subscriptionPlans[] = Auth::user()->settings->newSubscription('sms', 'price_1IRnMvG2876YRaIghhsfmd33')
+        $checkout = $request->user()->settings->newSubscription('default', 'price_1IRnMvG2876YRaIghhsfmd33')
             ->trialDays(7)
             ->checkout([
-                'success_url' => route('bookings.index'),
-                'cancel_url' => route('bookings.index'),
+                'success_url' => route('settings.index'),
+                'cancel_url' => route('settings.index'),
             ]);
 
-        $subscriptionPlans[] = Auth::user()->settings->newSubscription('sms', 'price_1IRnMvG2876YRaIgfvY4P1EQ')
-            ->trialDays(7)
-            ->checkout([
-                'success_url' => route('bookings.index'),
-                'cancel_url' => route('bookings.index'),
-            ]);
-
-        return $subscriptionPlans;
+        return Inertia::render('Settings/Index', [
+            'stripeKey' => config('services.stripe.key'),
+            'sessionId' => $checkout->id
+        ]);
     }
 }

@@ -14,7 +14,7 @@
                                 kommer att skickas till Stripes webbsida för att hantera
                                 din prenumeration.
                             </div>
-                            <div v-if="$page.props.user.subscribed" class="mt-6">
+                            <div v-if="$page.props.auth.user.subscribed" class="mt-6">
                                 <a
                                     class="px-6 py-3 text-white bg-teal-500 rounded"
                                     :href="route('stripe.portal')"
@@ -23,19 +23,10 @@
                                 </a>
                             </div>
                             <div v-else class="mt-6">
-                                <div
-                                    id="error-message"
-                                    class="hidden p-2 mt-4 bg-pink-100"
-                                />
-
                                 <div class="mt-4">
-                                    <div
-                                        v-for="(plan, index) in subscriptions"
-                                        :key="index"
-                                    >
-                                        plan
-                                        {{ plan }}
-                                    </div>
+                                    <JetButton @click.native="checkout">
+                                        Starta prenumeration
+                                    </JetButton>
                                 </div>
                             </div>
                         </div>
@@ -48,17 +39,34 @@
 
 <script>
 import JetFormSection from '@/Jetstream/FormSection'
+import JetButton from '@/Jetstream/Button'
 
 export default {
     components: {
-        JetFormSection
+        JetFormSection,
+        JetButton
     },
     props: {
-        subscriptions: {
-            type: Array,
-            default: () => []
+        stripeKey: {
+            type: String,
+            required: true
+        },
+        sessionId: {
+            type: String,
+            required: true
         }
     },
-    methods: {}
+    methods: {
+        checkout() {
+            window
+                .Stripe(this.stripeKey)
+                .redirectToCheckout({
+                    sessionId: this.sessionId
+                })
+                .then(function (result) {
+                    console.error('result', result)
+                })
+        }
+    }
 }
 </script>

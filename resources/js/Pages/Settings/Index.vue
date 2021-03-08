@@ -20,11 +20,8 @@
                 <JetSectionBorder />
                 <NotificationsForm :settings="user.settings" />
 
-                <JetSectionBorder v-if="subscriptionPlans.length" />
-                <Subscriptions
-                    v-if="subscriptionPlans.length"
-                    :subscriptions="subscriptionPlans"
-                />
+                <JetSectionBorder />
+                <Subscriptions :stripe-key="stripeKey" :session-id="sessionId" />
             </div>
         </div>
     </AppLayout>
@@ -56,9 +53,13 @@ export default {
             type: Object,
             required: true
         },
-        subscriptionPlans: {
-            type: Array,
-            default: () => []
+        stripeKey: {
+            type: String,
+            required: true
+        },
+        sessionId: {
+            type: String,
+            required: true
         }
     }
 }

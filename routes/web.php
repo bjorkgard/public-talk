@@ -13,7 +13,6 @@ use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TalkController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WebhookController;
 use App\Models\Talk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -65,5 +64,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('/bookings/{identifier}', [ExternalBookingController::class, 'index'])->name('bookings.thanks');
 Route::post('/bookings/greeting/{booking}', [BookingsController::class, 'greeting'])->name('bookings.greeting');
 Route::get('/reset-password', [AuthenticationController::class, 'resetPassword']);
-
-Route::post('/stripe/webhook', [WebhookController::class, 'handleCheckoutSessionCompleted']);
