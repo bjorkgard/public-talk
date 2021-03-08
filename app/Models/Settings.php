@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Cashier\Billable;
 
 class Settings extends Model
 {
-    use HasFactory;
+    use Billable, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,11 @@ class Settings extends Model
         'congregation',
         'meeting',
         'extra',
-        'notifications'
+        'notifications',
+        'stripe_id',
+        'card_brand',
+        'card_last_four',
+        'trials_ends_at'
     ];
 
     /**

@@ -19,6 +19,12 @@
 
                 <JetSectionBorder />
                 <NotificationsForm :settings="user.settings" />
+
+                <JetSectionBorder v-if="subscriptionPlans.length" />
+                <Subscriptions
+                    v-if="subscriptionPlans.length"
+                    :subscriptions="subscriptionPlans"
+                />
             </div>
         </div>
     </AppLayout>
@@ -31,6 +37,7 @@ import CongregationForm from './CongregationForm'
 import MeetingForm from './MeetingForm'
 import NotificationsForm from './NotificationsForm'
 import ExtraForm from './ExtraForm'
+import Subscriptions from './Subscriptions'
 import HelpButton from '@Shared/HelpButton'
 
 export default {
@@ -41,12 +48,17 @@ export default {
         MeetingForm,
         NotificationsForm,
         ExtraForm,
+        Subscriptions,
         HelpButton
     },
     props: {
         user: {
             type: Object,
             required: true
+        },
+        subscriptionPlans: {
+            type: Array,
+            default: () => []
         }
     }
 }
