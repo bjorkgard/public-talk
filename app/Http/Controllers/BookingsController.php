@@ -12,9 +12,9 @@ use App\Mail\BookingDeleted;
 use App\Mail\SendThankYou;
 use App\Models\Booking;
 use App\Models\Chairman;
-use App\Models\Settings;
 use App\Models\Speaker;
 use App\Models\Talk;
+use App\Repositories\Php46Elks\Php46ElksClient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -187,7 +187,28 @@ class BookingsController extends Controller
             'identifier' => null
         ]);
 
-        Mail::to($booking->speaker->email, $booking->speaker->full_name)->queue(new SendThankYou($booking, $request->input('greeting')));
+        if ($booking->speaker->email && $booking->settings->notifications->thanks_mail) {
+            Mail::to($booking->speaker->email, $booking->speaker->full_name)->queue(new SendThankYou($booking, $request->input('greeting')));
+        }
+
+        if ($booking->speaker->phone && $booking->settings->notifications->thanks_sms) {
+            $php46ElksClient = new Php46ElksClient(config('services.46elks.username'), config('services.46elks.password'));
+            $sms = $php46ElksClient->sms()->SMSDispatcher();
+
+            $response = $sms
+                ->from($booking->user->settings->number->number)
+                ->recipient($booking->speaker->phone)
+                ->line('Tack för din föreläsning!')
+                ->line($request->input('greeting'))
+                ->line()
+                ->line('Med vänlig hälsning')
+                ->line($booking->user->name . ', ' . $booking->user->formated_phone)
+                ->dryRun(config('services.46elks.dryrun'))
+                ->send();
+
+            // Report to Stripe number of SMS parts
+            $booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);
+        }
 
         $request->session()->flash('success', 'En hälsning till ' . $booking->speaker->full_name . ' är skickad');
 

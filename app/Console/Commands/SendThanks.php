@@ -33,7 +33,7 @@ class SendThanks extends Command
         $bookings = Booking::where('date', $yesterday)->where('thanked', false)->whereNotNull('identifier')->with('user', 'settings')->get();
 
         foreach ($bookings as $booking) {
-            if ($booking->speaker->email && $booking->settings->notifications->thanks) {
+            if (($booking->speaker->email && $booking->settings->notifications->thanks_mail) || ($booking->speaker->phone && $booking->settings->notifications->thanks_sms)) {
                 Mail::to($booking->user->email, $booking->user->name)->queue(new SendThanksReminder($booking));
             }
         }
