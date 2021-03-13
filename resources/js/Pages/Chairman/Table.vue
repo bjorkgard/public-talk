@@ -99,7 +99,7 @@
                             <td
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
-                                {{ row.phone }}
+                                {{ row.formated_phone }}
                             </td>
                             <td
                                 class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap cursor-default"

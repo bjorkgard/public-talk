@@ -28,7 +28,8 @@ class SpeakerStoreRequest extends FormRequest
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'congregation' => ['required', 'string', 'max:255'],
-            'phone' => ['string', 'max:255', 'nullable'],
+            'phone_country' => ['required_with:phone'],
+            'phone' => ['nullable', 'phone'],
             'email' => ['email', 'max:255', 'nullable'],
             'comments' => ['string', 'max:255', 'nullable']
         ];
