@@ -27,9 +27,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('telescope:prune')->daily()->environments(['local']);;
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
 
-        $schedule->command('pt:remind-speaker')->daily()->pingOnSuccess('http://beats.envoyer.io/heartbeat/BO8elh9WGDGB7Iq');
-        $schedule->command('pt:chairman')->daily()->pingOnSuccess('http://beats.envoyer.io/heartbeat/2QcV2UKXjdNN5VS');
-        $schedule->command('pt:send-thanks')->daily()->pingOnSuccess('http://beats.envoyer.io/heartbeat/grM1rShpGrHLY9s');
+        $schedule->command('pt:remind-speaker')->dailyAt('10:00')->pingOnSuccess('http://beats.envoyer.io/heartbeat/BO8elh9WGDGB7Iq');
+        $schedule->command('pt:chairman')->dailyAt('11:00')->pingOnSuccess('http://beats.envoyer.io/heartbeat/2QcV2UKXjdNN5VS');
+        $schedule->command('pt:send-thanks')->dailyAt('09:00')->pingOnSuccess('http://beats.envoyer.io/heartbeat/grM1rShpGrHLY9s');
     }
 
     /**
@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
