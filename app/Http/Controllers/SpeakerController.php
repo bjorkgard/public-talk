@@ -6,6 +6,7 @@ use App\Events\SpeakerDelete;
 use App\Http\Requests\SpeakerStoreRequest;
 use App\Http\Requests\SpeakerUpdateRequest;
 use App\Models\Speaker;
+use App\Repositories\CountryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -18,9 +19,8 @@ class SpeakerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Inertia\Inertia
      */
-    public function index(Request $request)
+    public function index(Request $request, CountryRepository $repo)
     {
-
         $sort = $request->has('sort') ? $request->input('sort') : 'lastname';
         $order = $request->has('order') ? $request->input('order') : 'asc';
         $search = $request->has('search') ? $request->input('search') : '';
@@ -40,7 +40,13 @@ class SpeakerController extends Controller
         }
         $speakers->appends(['sort' => $sort, 'order' => $order, 'search' => $search]);
 
-        return Inertia::render('Speakers/Index', ['speakers' => $speakers, 'search' => $search]);
+        $countries = $repo->getAllCountryCodes();
+
+        return Inertia::render('Speakers/Index', [
+            'speakers' => $speakers, 
+            'search' => $search, 
+            'countries' => $countries
+        ]);
     }
 
     /**

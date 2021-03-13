@@ -6,21 +6,21 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Mail\UserInvite;
 use App\Models\User;
-use Carbon\Carbon;
+use App\Repositories\CountryRepository;
 use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    public function index() {
+    public function index(CountryRepository $repo) {
         $users = User::where('settings_id', Auth::user()->settings->id)->get();
-
-        return Inertia::render('User/Index', ['users' => $users]);
+        $countryCodes = $repo->getAllCountryCodes();
+        
+        return Inertia::render('User/Index', ['users' => $users, 'countries' => $countryCodes]);
     }
 
     public function store(UserStoreRequest $request) {

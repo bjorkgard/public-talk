@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chairman;
 use App\Http\Requests\ChairmanStoreRequest;
 use App\Http\Requests\ChairmanUpdateRequest;
+use App\Repositories\CountryRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,7 +15,7 @@ class ChairmanController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, CountryRepository $repo)
     {
         $sort = $request->has('sort') ? $request->input('sort') : 'name';
         $order = $request->has('order') ? $request->input('order') : 'asc';
@@ -22,7 +23,9 @@ class ChairmanController extends Controller
         $chairmen = Chairman::with('lastBooking')->orderBy($sort, $order)->paginate();
         $chairmen->appends(['sort' => $sort, 'order' => $order]);
 
-        return Inertia::render('Chairman/Index', compact('chairmen'));
+        $countries = $repo->getAllCountryCodes();
+
+        return Inertia::render('Chairman/Index', compact('chairmen', 'countries'));
     }
 
     /**
