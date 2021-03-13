@@ -2,7 +2,7 @@
     <JetFormSection>
         <template #title> Prenumeration </template>
 
-        <template #description> Starta, ändra eller avbryt din prenumeration </template>
+        <template #description> Starta, ändra eller avbryt din prenumeration. </template>
 
         <template #form>
             <fieldset class="col-span-6">
@@ -10,9 +10,11 @@
                     <div class="flex items-start">
                         <div class="ml-3 text-sm leading-5">
                             <div class="font-medium text-gray-700">
-                                Public Talk använder sig av Stripe som betalplattform.<br />Du
-                                kommer att skickas till Stripes webbsida för att hantera
-                                din prenumeration.
+                                Några tilläggsfunktioner (t.ex. skicka SMS) kräver en
+                                prenumeration till självkostnadspris.<br />
+                                Vi använder Stripe som betalplattform och du kommer att
+                                skickas till Stripes webbsida för att hantera din
+                                prenumeration.
                             </div>
                             <div v-if="$page.props.auth.user.subscribed" class="mt-6">
                                 <a

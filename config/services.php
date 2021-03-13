@@ -30,9 +30,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'stripe' => [        
-        'key' => env('STRIPE_KEY'),        
-        'secret' => env('STRIPE_SECRET'),    
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'phone' => env('STRIPE_PHONE'),
+        'sms' => env('STRIPE_SMS'),
+    ],
+
+    '46elks' => [
+        'username' => env('FORTY_SIX_ELKS_USERNAME'),
+        'password' => env('FORTY_SIX_ELKS_PASSWORD'),
+        'dryrun' => env('FORTY_SIX_ELKS_DRYRUN', false),
     ],
 
 ];
