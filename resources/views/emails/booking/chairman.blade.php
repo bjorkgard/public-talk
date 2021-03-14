@@ -15,6 +15,7 @@ Talaren har inte fått någon automatisk påminnelse!
 |__Sång__|{{$booking->song}}|
 |__Föreläsning__|{{$booking->talk->theme}}|
 |__Talare__|{{$booking->speaker->firstname}} {{$booking->speaker->lastname}}|
+|__Telefon__|{{$booking->speaker->formated_phone}}|
 |__Församling__|{{$booking->speaker->congregation}}|
 @endcomponent
 

@@ -53,6 +53,7 @@ class ChairmanMail extends Command
                     ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
                     ->line('Tema: ' . $booking->talk->theme)
                     ->line('Talare: ' . $booking->speaker->firstname . ' ' . $booking->speaker->lastname)
+                    ->line('Telefon: ' . $booking->speaker->formated_phone)
                     ->line('Församling: ' . $booking->speaker->congregation)
                     ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
                     ->dryRun(config('services.46elks.dryrun'))
