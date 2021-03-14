@@ -56,7 +56,7 @@ class ReminderSpeaker extends Command
                         ->line('Församling: ' . $booking->settings->congregation->name)
                         ->line('Kontakt: ' . $booking->user->name . ', ' . $booking->user->formated_phone)
                         ->line('Datum: ' . $booking->date)
-                        ->line('Tid: ' . $booking->time)
+                        ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
                         ->line('Tema: (' . $booking->talk->number . ') ' . $booking->talk->theme)
                         ->dryRun(config('services.46elks.dryrun'))
                         ->send();

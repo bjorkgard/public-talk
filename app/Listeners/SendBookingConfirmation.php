@@ -50,7 +50,7 @@ class SendBookingConfirmation implements ShouldQueue
                     ->line('Församling: ' . $event->booking->settings->congregation->name)
                     ->line('Kontakt: ' . $event->booking->user->name . ', ' . $event->booking->user->formated_phone)
                     ->line('Datum: ' . $event->booking->date)
-                    ->line('Tid: ' . $event->booking->time)
+                    ->line('Tid: ' . substr($event->booking->time, 0, strrpos($event->booking->time, ':')))
                     ->line('Tema: (' . $event->booking->talk->number . ') ' . $event->booking->talk->theme)
                     ->dryRun(config('services.46elks.dryrun'))
                     ->send();

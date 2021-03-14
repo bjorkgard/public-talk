@@ -50,7 +50,7 @@ class ChairmanMail extends Command
                     ->line('Du har blivit utsedd till ordförande för följande föreläsning.')
                     ->line()
                     ->line('Datum: ' . $booking->date)
-                    ->line('Tid: ' . $booking->time)
+                    ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
                     ->line('Tema: ' . $booking->talk->theme)
                     ->line('Talare: ' . $booking->speaker->firstname . ' ' . $booking->speaker->lastname)
                     ->line('Församling: ' . $booking->speaker->congregation)
