@@ -18,7 +18,7 @@ class SettingsController extends Controller
             ->meteredPlan(config('services.stripe.sms'))
             ->checkout([
                 'success_url' => route('stripe.success'),
-                'cancel_url' => route('settings.index'),
+                'cancel_url' => route('settings.index')
             ]);
 
         return Inertia::render('Settings/Index', [

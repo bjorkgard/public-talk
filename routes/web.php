@@ -60,6 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/stripe/portal', [StripeController::class, 'portal'])->name('stripe.portal');
     Route::get('/stripe/success', [StripeController::class, 'registerNumber'])->name('stripe.success');
+    Route::get('/stripe/cancel', [StripeController::class, 'delocateNumber'])->name('stripe.cancel');
 });
 
 Route::get('/bookings/{identifier}', [ExternalBookingController::class, 'index'])->name('bookings.thanks');
