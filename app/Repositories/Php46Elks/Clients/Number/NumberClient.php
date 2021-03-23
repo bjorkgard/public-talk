@@ -86,7 +86,9 @@ class NumberClient extends BaseClient
         $this->setOption('active', $active);
 
         // perform request
-        $request = $this->getGuzzleClient()->post("numbers/$id", $this->getOptions(true));
+        $request = $this->getGuzzleClient()->post("numbers/$id", [
+            GuzzleHttpRequestOptions::FORM_PARAMS => $this->getOptions(true)
+        ]);
 
         // catch result
         $response = $request->getBody()->getContents();
