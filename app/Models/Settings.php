@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Cashier\Billable;
 
 class Settings extends Model
 {
-    use HasFactory;
+    use Billable, HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,11 @@ class Settings extends Model
         'congregation',
         'meeting',
         'extra',
-        'notifications'
+        'notifications',
+        'stripe_id',
+        'card_brand',
+        'card_last_four',
+        'trials_ends_at'
     ];
 
     /**
@@ -43,7 +48,11 @@ class Settings extends Model
         'congregation' => '{"name" : ""}',
         'meeting' => '{"day" : "Sunday", "time" : ""}',
         'extra' => '[]',
-        'notifications' => '{"confirmation" : false, "reminder" : false, "thanks" : false, "chairman" : false}',
+        'notifications' => '{"confirmation_mail" : false, "confirmation_sms" : false, "reminder_mail" : false, "reminder_sms" : false, "thanks_mail" : false, "thanks_sms" : false, "chairman_mail" : false, "chairman_sms" : false}',
+    ];
+
+    protected $with = [
+        'number'
     ];
 
     public function users()
@@ -64,5 +73,10 @@ class Settings extends Model
     public function chairmen()
     {
         return $this->hasMany(\App\Models\Chairman::class);
+    }
+
+    public function number()
+    {
+        return $this->hasOne(\App\Models\Number::class);
     }
 }

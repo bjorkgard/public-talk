@@ -19,6 +19,9 @@
 
                 <JetSectionBorder />
                 <NotificationsForm :settings="user.settings" />
+
+                <JetSectionBorder />
+                <Subscriptions :stripe-key="stripeKey" :session-id="sessionId" />
             </div>
         </div>
     </AppLayout>
@@ -31,6 +34,7 @@ import CongregationForm from './CongregationForm'
 import MeetingForm from './MeetingForm'
 import NotificationsForm from './NotificationsForm'
 import ExtraForm from './ExtraForm'
+import Subscriptions from './Subscriptions'
 import HelpButton from '@Shared/HelpButton'
 
 export default {
@@ -41,11 +45,20 @@ export default {
         MeetingForm,
         NotificationsForm,
         ExtraForm,
+        Subscriptions,
         HelpButton
     },
     props: {
         user: {
             type: Object,
+            required: true
+        },
+        stripeKey: {
+            type: String,
+            required: true
+        },
+        sessionId: {
+            type: String,
             required: true
         }
     }

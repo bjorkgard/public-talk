@@ -48,6 +48,7 @@ class HandleInertiaRequests extends Middleware
                     'user' => $request->user() ? [
                         'id' => $request->user()->id,
                         'name' => $request->user()->name,
+                        'subscribed' => $request->user()->settings->subscribed('default')
                     ] : null,
                 ];
             },

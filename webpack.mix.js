@@ -14,11 +14,10 @@ require('laravel-mix-polyfill')
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-        require('autoprefixer')
-    ])
+    .postCss('resources/css/app.css', 'public/css')
+    .options({
+        postCss: [require('@tailwindcss/jit')]
+    })
     .extract()
     .polyfill({
         enabled: mix.inProduction(),

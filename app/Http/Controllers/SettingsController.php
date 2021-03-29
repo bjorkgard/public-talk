@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Settings;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,8 +12,18 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Settings/Index');
+        $checkout = $request->user()->settings->newSubscription('default', [config('services.stripe.phone')])
+            ->meteredPlan(config('services.stripe.sms'))
+            ->checkout([
+                'success_url' => route('stripe.success'),
+                'cancel_url' => route('settings.index')
+            ]);
+
+        return Inertia::render('Settings/Index', [
+            'stripeKey' => config('services.stripe.key'),
+            'sessionId' => $checkout->id
+        ]);
     }
 }

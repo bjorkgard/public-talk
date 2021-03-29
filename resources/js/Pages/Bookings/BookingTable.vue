@@ -131,13 +131,25 @@
                             >
                                 <span
                                     v-if="
-                                        booking &&
-                                        (booking.exception ||
-                                            (booking.speaker && !booking.speaker.email))
+                                        !booking.no_meeting &&
+                                        booking.identifier &&
+                                        booking.upcoming &&
+                                        !booking.confirmation
                                     "
-                                    title="E-postadress saknas så ingen bekräftelse eller påminnelse kan skickas"
+                                    title="Ingen bekräftelse har skickats"
                                 >
                                     <Icons name="exception" class="w-5 text-orange-500" />
+                                </span>
+                                <span
+                                    v-if="
+                                        !booking.no_meeting &&
+                                        booking.identifier &&
+                                        booking.upcoming &&
+                                        booking.reminder
+                                    "
+                                    title="En påminnelse har skickats"
+                                >
+                                    <Icons name="info" class="w-5 text-blue-500" />
                                 </span>
                                 <span
                                     v-if="booking.talk && booking.talk.deleted_at"

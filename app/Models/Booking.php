@@ -31,7 +31,9 @@ class Booking extends Model
         'grade',
         'thanked',
         'identifier',
-        'no_meeting'
+        'no_meeting',
+        'confirmation',
+        'reminder'
     ];
 
     protected $with = ['speaker', 'talk', 'chairman', 'settings', 'user'];
@@ -45,6 +47,8 @@ class Booking extends Model
         'exception' => 'boolean',
         'thanked' => 'boolean',
         'no_meeting' => 'boolean',
+        'confirmation' => 'boolean',
+        'reminder' => 'boolean'
     ];
 
     protected static function booted()

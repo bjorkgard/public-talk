@@ -13,7 +13,7 @@
                     id="name"
                     v-model="form.name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autofocus
                     autocomplete="name"
@@ -26,7 +26,7 @@
                     id="email"
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                 />
             </div>
@@ -37,7 +37,7 @@
                     id="phone"
                     v-model="form.phone"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                 />
             </div>
@@ -48,7 +48,7 @@
                     id="password"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="new-password"
                 />
@@ -60,7 +60,7 @@
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="new-password"
                 />
@@ -79,14 +79,14 @@
                             <a
                                 target="_blank"
                                 :href="route('terms.show')"
-                                class="underline text-sm text-gray-600 hover:text-gray-900"
+                                class="text-sm text-gray-600 underline hover:text-gray-900"
                                 >Terms of Service</a
                             >
                             and
                             <a
                                 target="_blank"
                                 :href="route('policy.show')"
-                                class="underline text-sm text-gray-600 hover:text-gray-900"
+                                class="text-sm text-gray-600 underline hover:text-gray-900"
                                 >Privacy Policy</a
                             >
                         </div>
@@ -97,7 +97,7 @@
             <div class="flex items-center justify-end mt-4">
                 <inertia-link
                     :href="route('login')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900"
+                    class="text-sm text-gray-600 underline hover:text-gray-900"
                 >
                     Redan registrerad?
                 </inertia-link>
@@ -140,6 +140,7 @@ export default {
                 name: '',
                 email: '',
                 phone: '',
+                phone_country: 'SE',
                 password: '',
                 password_confirmation: '',
                 terms: false

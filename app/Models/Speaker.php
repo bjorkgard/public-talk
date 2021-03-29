@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Speaker extends Model
 {
@@ -38,9 +39,30 @@ class Speaker extends Model
         'comments'
     ];
 
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'formated_phone'];
 
     protected $with = ['talks'];
+
+    /**
+     * Set the user's phone number.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = $value ? PhoneNumber::make($value, $this->attributes['phone_country']) : null;
+    }
+
+    /**
+     * Get the users's formated phone
+     * 
+     * @return string
+     */
+    public function getFormatedPhoneAttribute()
+    {
+        return $this->phone ? PhoneNumber::make($this->phone, $this->phone_country)->formatNational() : null;
+    }
 
     protected static function booted()
     {

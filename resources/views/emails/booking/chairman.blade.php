@@ -3,6 +3,9 @@
 
 Du har blivit utsedd till ordförande för följande föreläsning.
 
+@if(!$booking->reminder)
+Talaren har inte fått någon automatisk påminnelse!
+@endif
 
 @component('mail::table')
 | | |
@@ -12,6 +15,7 @@ Du har blivit utsedd till ordförande för följande föreläsning.
 |__Sång__|{{$booking->song}}|
 |__Föreläsning__|{{$booking->talk->theme}}|
 |__Talare__|{{$booking->speaker->firstname}} {{$booking->speaker->lastname}}|
+|__Telefon__|{{$booking->speaker->formated_phone}}|
 |__Församling__|{{$booking->speaker->congregation}}|
 @endcomponent
 

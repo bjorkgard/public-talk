@@ -117,6 +117,7 @@ return [
     'uploaded'    => ':Attribute kunde inte laddas upp.',
     'url'         => ':Attribute har ett ogiltigt format.',
     'uuid'        => ':Attribute måste vara ett giltigt UUID.',
+    'phone' => ':Attribute innehåller ett felaktigt telefonnummer.',
 
     /*
     |--------------------------------------------------------------------------

@@ -30,6 +30,10 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\SpeakerDelete::class => [
             \App\Listeners\SendSpeakerDeleteWarning::class
         ],
+
+        'Laravel\Cashier\Events\WebhookHandled' => [
+            \App\Listeners\StripePostHandler::class
+        ]
     ];
 
     /**

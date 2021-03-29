@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -26,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'phone_country',
         'phone',
         'password',
         'role',
@@ -61,11 +63,33 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = [
         'profile_photo_url',
+        'formated_phone'
     ];
-    
+
     protected $with = [
         'settings'
     ];
+
+    /**
+     * Set the user's phone number.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = PhoneNumber::make($value, $this->attributes['phone_country']);
+    }
+
+    /**
+     * Get the users's formated phone
+     * 
+     * @return string
+     */
+    public function getFormatedPhoneAttribute()
+    {
+        return PhoneNumber::make($this->phone, $this->phone_country)->formatNational();
+    }
 
     public function settings()
     {

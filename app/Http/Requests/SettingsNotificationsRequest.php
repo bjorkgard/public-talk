@@ -29,10 +29,14 @@ class SettingsNotificationsRequest extends FormRequest
     public function rules()
     {
         return [
-            'confirmation' => 'required|boolean',
-            'reminder' => 'required|boolean',
-            'thanks' => 'required|boolean',
-            'chairman' => 'required|boolean',
+            'confirmation_mail' => 'required|boolean',
+            'confirmation_sms' => 'required|boolean',
+            'reminder_mail' => 'required|boolean',
+            'reminder_sms' => 'required|boolean',
+            'thanks_mail' => 'required|boolean',
+            'thanks_sms' => 'required|boolean',
+            'chairman_mail' => 'required|boolean',
+            'chairman_sms' => 'required|boolean',
         ];
     }
 }

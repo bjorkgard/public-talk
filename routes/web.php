@@ -10,9 +10,11 @@ use App\Http\Controllers\SettingsNotificationsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SettingsExtraController;
 use App\Http\Controllers\SpeakerController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TalkController;
 use App\Http\Controllers\UserController;
 use App\Models\Talk;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -55,6 +57,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('chairmen', ChairmanController::class)->except(['create', 'edit', 'show']);
     Route::resource('/users', UserController::class)->except(['create', 'edit', 'show']);
     Route::post('invite-user/{user}', [UserController::class, 'invite']);
+
+    Route::get('/stripe/portal', [StripeController::class, 'portal'])->name('stripe.portal');
+    Route::get('/stripe/success', [StripeController::class, 'registerNumber'])->name('stripe.success');
+    Route::get('/stripe/cancel', [StripeController::class, 'delocateNumber'])->name('stripe.cancel');
 });
 
 Route::get('/bookings/{identifier}', [ExternalBookingController::class, 'index'])->name('bookings.thanks');

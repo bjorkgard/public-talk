@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Chairman extends Model
 {
@@ -32,6 +33,7 @@ class Chairman extends Model
         'name',
         'email',
         'phone',
+        'phone_country',
         'settings_id',
     ];
 
@@ -44,6 +46,36 @@ class Chairman extends Model
         'id' => 'integer',
         'settings_id' => 'integer',
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'formated_phone'
+    ];
+
+    /**
+     * Set the user's phone number.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = PhoneNumber::make($value, $this->attributes['phone_country']);
+    }
+
+    /**
+     * Get the users's formated phone
+     * 
+     * @return string
+     */
+    public function getFormatedPhoneAttribute()
+    {
+        return PhoneNumber::make($this->phone, $this->phone_country)->formatNational();
+    }
 
     public function lastBooking()
     {
