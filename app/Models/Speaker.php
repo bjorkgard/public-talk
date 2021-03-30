@@ -36,7 +36,8 @@ class Speaker extends Model
         'congregation',
         'phone',
         'email',
-        'comments'
+        'comments',
+        'phone_country'
     ];
 
     protected $appends = ['full_name', 'formated_phone'];
