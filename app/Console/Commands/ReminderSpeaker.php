@@ -58,7 +58,6 @@ class ReminderSpeaker extends Command
                         ->line('Datum: ' . $booking->date)
                         ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
                         ->line('Tema: (' . $booking->talk->number . ') ' . $booking->talk->theme)
-                        ->dryRun(config('services.46elks.dryrun'))
                         ->send();
 
                     // Report to Stripe number of SMS parts

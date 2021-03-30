@@ -203,7 +203,6 @@ class BookingsController extends Controller
                 ->line()
                 ->line('Med vänlig hälsning')
                 ->line($booking->user->name . ', ' . $booking->user->formated_phone)
-                ->dryRun(config('services.46elks.dryrun'))
                 ->send();
 
             // Report to Stripe number of SMS parts

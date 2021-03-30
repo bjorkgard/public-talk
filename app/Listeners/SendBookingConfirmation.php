@@ -52,7 +52,6 @@ class SendBookingConfirmation implements ShouldQueue
                     ->line('Datum: ' . $event->booking->date)
                     ->line('Tid: ' . substr($event->booking->time, 0, strrpos($event->booking->time, ':')))
                     ->line('Tema: (' . $event->booking->talk->number . ') ' . $event->booking->talk->theme)
-                    ->dryRun(config('services.46elks.dryrun'))
                     ->send();
 
                 // Report to Stripe number of SMS parts
