@@ -51,10 +51,10 @@ class ChairmanMail extends Command
                     ->line()
                     ->line('Datum: ' . $booking->date)
                     ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
-                    ->line('Tema: ' . $booking->talk->theme)
-                    ->line('Talare: ' . $booking->speaker->firstname . ' ' . $booking->speaker->lastname)
-                    ->line('Telefon: ' . $booking->speaker->formated_phone)
-                    ->line('Församling: ' . $booking->speaker->congregation)
+                    ->line('Tema: ' . $booking->talk ? $booking->talk->theme : $booking->custom_talk)
+                    ->line('Talare: ' . $booking->speaker ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker)
+                    ->line('Telefon: ' . $booking->speaker ? $booking->speaker->formated_phone : '')
+                    ->line('Församling: ' . $booking->speaker ? $booking->speaker->congregation : '')
                     ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
                     ->send();
 
