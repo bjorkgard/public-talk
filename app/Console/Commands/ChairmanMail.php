@@ -44,6 +44,11 @@ class ChairmanMail extends Command
                 $php46ElksClient = new Php46ElksClient(config('services.46elks.username'), config('services.46elks.password'));
                 $sms = $php46ElksClient->sms()->SMSDispatcher();
 
+                $talk = !is_null($booking->talk) ? $booking->talk->theme : $booking->custom_talk;
+                $speaker = !is_null($booking->speaker) ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker;
+                $phone = !is_null($booking->speaker) ? $booking->speaker->formated_phone : '';
+                $congregation = !is_null($booking->speaker) ? $booking->speaker->congregation : '';
+
                 $response = $sms
                     ->from($booking->user->settings->number->number)
                     ->recipient($booking->chairman->phone)
@@ -51,10 +56,10 @@ class ChairmanMail extends Command
                     ->line()
                     ->line('Datum: ' . $booking->date)
                     ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
-                    ->line('Tema: ' . $booking->talk ? $booking->talk->theme : $booking->custom_talk)
-                    ->line('Talare: ' . $booking->speaker ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker)
-                    ->line('Telefon: ' . $booking->speaker ? $booking->speaker->formated_phone : '')
-                    ->line('Församling: ' . $booking->speaker ? $booking->speaker->congregation : '')
+                    ->line('Tema: ' . $talk)
+                    ->line('Talare: ' . $speaker)
+                    ->line('Telefon: ' . $$phone)
+                    ->line('Församling: ' . $congregation)
                     ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
                     ->send();
 
