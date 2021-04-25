@@ -13,10 +13,10 @@ Talaren har inte fått någon automatisk påminnelse!
 |__Datum__|{{$booking->date}}|
 |__Tid__|{{substr($booking->time, 0, strrpos( $booking->time, ':'))}}|
 |__Sång__|{{$booking->song}}|
-|__Föreläsning__|{{$booking->talk->theme}}|
-|__Talare__|{{$booking->speaker->firstname}} {{$booking->speaker->lastname}}|
-|__Telefon__|{{$booking->speaker->formated_phone}}|
-|__Församling__|{{$booking->speaker->congregation}}|
+|__Föreläsning__|{{$booking->talk ? $booking->talk->theme : $booking->custom_talk}}|
+|__Talare__|{{$booking->speaker ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker}}|
+|__Telefon__|{{$booking->speaker ? $booking->speaker->formated_phone : ''}}|
+|__Församling__|{{$booking->speaker ? $booking->speaker->congregation : ''}}|
 @endcomponent
 
 @component('mail::button', ['url' => $calendarLink->ics()])

@@ -49,12 +49,15 @@ function generateChairmanIcs(Booking $booking)
 
 function generateChairmanDescription(Booking $booking)
 {
+  $talk = !is_null($booking->talk) ? $booking->talk->theme : $booking->custom_talk;
+  $speaker = !is_null($booking->speaker) ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker;
+  $congregation = !is_null($booking->speaker) ? $booking->speaker->congregation : '';
   $description = '';
 
   $description .= 'Sång: ' . $booking->song . '\n';
-  $description .= 'Tema: ' . $booking->talk->theme . '\n';
-  $description .= 'Talare: ' . $booking->speaker->firstname . ' ' . $booking->speaker->lastname . '\n';
-  $description .= 'Församling: ' . $booking->speaker->congregation;
+  $description .= 'Tema: ' . $talk . '\n';
+  $description .= 'Talare: ' . $speaker . '\n';
+  $description .= 'Församling: ' . $congregation;
 
   return $description;
 }
