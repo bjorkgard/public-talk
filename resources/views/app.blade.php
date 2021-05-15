@@ -29,7 +29,9 @@
     <script src="{{ mix('/js/vendor.js') }}" defer></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
 
+    @if( config('app.env') == 'production')
     <script async defer data-website-id="0c131d7f-c550-4186-bc4a-cc5b913b9aeb" src="https://stats.jwapp.info/umami.js"></script>
+    @endif
 
     <script src="https://js.stripe.com/v3/"></script>
 
