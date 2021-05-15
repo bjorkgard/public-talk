@@ -114,8 +114,12 @@ class BookingsController extends Controller
     public function destroy(BookingDestroyRequest $request, Booking $booking)
     {
         if ($request->input('message') && $booking->speaker) {
-            Mail::to($booking->speaker->email)->send(new BookingDeleted($request->user(), $booking->date));
-            $request->session()->flash('success', 'Bokningen är raderad och talaren har fått en bekräftelse');
+            if ($booking->speaker->email) {
+                Mail::to($booking->speaker->email)->send(new BookingDeleted($request->user(), $booking->date));
+                $request->session()->flash('success', 'Bokningen är raderad och talaren har fått en bekräftelse');
+            } else {
+                $request->session()->flash('success', 'Bokningen är raderad men det gick inte att skicka ett meddelande till talaren.');
+            }
         } else {
             $request->session()->flash('success', 'Bokningen är raderad');
         }
@@ -147,7 +151,7 @@ class BookingsController extends Controller
                 'comments' => $booking->comments,
             ],
             'speakers' => Speaker::all(),
-            'talks' => Talk::with('speakers')->get(),
+            'talks' => Talk::with('speakers')->withTrashed()->get(),
             'chairmen' => Chairman::all()
         ]);
     }
