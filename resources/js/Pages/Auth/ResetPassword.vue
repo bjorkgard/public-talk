@@ -13,7 +13,7 @@
                     id="email"
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autofocus
                 />
@@ -25,7 +25,7 @@
                     id="password"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="new-password"
                 />
@@ -37,7 +37,7 @@
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="new-password"
                 />
@@ -46,6 +46,7 @@
             <div class="flex items-center justify-end mt-4">
                 <JetButton
                     :class="{ 'opacity-25': form.processing }"
+                    class="umami--click--reset-password"
                     :disabled="form.processing"
                 >
                     Återställ lösenord

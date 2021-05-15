@@ -111,7 +111,7 @@
                                 <span title="Visa talare med denna föreläsning">
                                     <Icons
                                         name="users"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--show-talk-speakers"
                                         @click.native="showSpeakersForTalk(row.id)"
                                     />
                                 </span>
@@ -126,14 +126,14 @@
                                 >
                                     <Icons
                                         name="book"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--book-talk"
                                         @click.native="bookTalk(row.id)"
                                     />
                                 </span>
                                 <span v-if="owner" title="Radera föreläsning">
                                     <Icons
                                         name="delete"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-talk"
                                         @click.native="confirmTalkDeletion(row.id)"
                                     />
                                 </span>

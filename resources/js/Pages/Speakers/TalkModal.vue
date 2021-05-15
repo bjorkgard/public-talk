@@ -91,7 +91,7 @@
                             >
                                 <Icons
                                     name="book"
-                                    class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                    class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--book-speaker-talk"
                                     @click.native="bookTalk(row.id)"
                                 />
                             </span>

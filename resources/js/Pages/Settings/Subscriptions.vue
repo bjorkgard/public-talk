@@ -18,7 +18,7 @@
                             </div>
                             <div v-if="$page.props.auth.user.subscribed" class="mt-6">
                                 <a
-                                    class="px-6 py-3 text-white bg-teal-500 rounded"
+                                    class="px-6 py-3 text-white bg-teal-500 rounded umami--click--handle-subscription"
                                     :href="route('stripe.portal')"
                                 >
                                     Hantera din prenumeration
@@ -26,7 +26,10 @@
                             </div>
                             <div v-else class="mt-6">
                                 <div class="mt-4">
-                                    <JetButton @click.native="checkout">
+                                    <JetButton
+                                        class="umami--click--start-subscription"
+                                        @click.native="checkout"
+                                    >
                                         Starta prenumeration
                                     </JetButton>
                                 </div>

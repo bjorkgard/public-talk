@@ -23,15 +23,15 @@
 
                 <template #content>
                     Är du säker på att du vill ta bort ditt konto?<br />När kontot raderas
-                    kommer all data raderas permanent.<br />Ange ditt lösenord för att bekräfta
-                    att du vill radera ditt konto permanent.
+                    kommer all data raderas permanent.<br />Ange ditt lösenord för att
+                    bekräfta att du vill radera ditt konto permanent.
 
                     <div class="mt-4">
                         <JetInput
                             ref="password"
                             v-model="form.password"
                             type="password"
-                            class="mt-1 block w-3/4"
+                            class="block w-3/4 mt-1"
                             placeholder="Password"
                             @keyup.enter.native="deleteUser"
                         />
@@ -46,7 +46,7 @@
                     </JetSecondaryButton>
 
                     <JetDangerButton
-                        class="ml-2"
+                        class="ml-2 umami--click--delete-user"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
                         @click.native="deleteUser"

@@ -10,13 +10,13 @@
             <div
                 v-for="(field, index) in form.extra"
                 :key="index"
-                class="col-span-6 grid grid-cols-6 gap-6"
+                class="grid grid-cols-6 col-span-6 gap-6"
             >
                 <div class="col-span-2">
                     <JetInput
                         v-model="form.extra[index].label"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                         placeholder="Rubrik"
                     />
                 </div>
@@ -24,7 +24,7 @@
                     <JetInput
                         v-model="form.extra[index].value"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                         placeholder="Text"
                     />
                 </div>
@@ -46,6 +46,7 @@
 
             <JetButton
                 :class="{ 'opacity-25': form.processing }"
+                class="umami--click--update-extra"
                 :disabled="form.processing"
             >
                 Spara

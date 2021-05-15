@@ -27,14 +27,14 @@
                     <img
                         :src="user.profile_photo_url"
                         :alt="user.name"
-                        class="rounded-full h-20 w-20 object-cover"
+                        class="object-cover w-20 h-20 rounded-full"
                     />
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div v-show="photoPreview" class="mt-2">
                     <span
-                        class="block rounded-full w-20 h-20"
+                        class="block w-20 h-20 rounded-full"
                         :style="
                             'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
                             photoPreview +
@@ -71,7 +71,7 @@
                     id="name"
                     v-model="form.name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     autocomplete="name"
                 />
                 <JetInputError :message="form.errors.name" class="mt-2" />
@@ -84,7 +84,7 @@
                     id="email"
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.email" class="mt-2" />
             </div>
@@ -97,6 +97,7 @@
 
             <JetButton
                 :class="{ 'opacity-25': form.processing }"
+                class="umami--click--update-profile"
                 :disabled="form.processing"
             >
                 Spara

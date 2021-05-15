@@ -78,7 +78,7 @@
                                 >
                                     <Icons
                                         name="plus"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--add-speaker"
                                         @click.native="addSpeaker()"
                                     />
                                 </span>
@@ -125,14 +125,14 @@
                                 >
                                     <Icons
                                         name="book"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--book-speaker"
                                         @click.native="bookSpeaker(row.id)"
                                     />
                                 </span>
                                 <span title="visa talarens föreläsningar">
                                     <Icons
                                         name="document"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--show-speaker-talks"
                                         @click.native="showTalksForSpeaker(row.id)"
                                     />
                                 </span>
@@ -147,7 +147,7 @@
                                 >
                                     <Icons
                                         name="edit"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--edit-speaker"
                                         @click.native="editSpeaker(row)"
                                     />
                                 </span>
@@ -162,7 +162,7 @@
                                 >
                                     <Icons
                                         name="delete"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-speaker"
                                         @click.native="confirmSpeakerDeletion(row.id)"
                                     />
                                 </span>

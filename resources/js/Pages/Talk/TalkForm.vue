@@ -12,7 +12,7 @@
                         v-model="form.number"
                         :error="form.errors.number"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                     />
                     <JetInputError :message="form.errors.number" class="mt-2" />
                 </div>
@@ -25,7 +25,7 @@
                         v-model="form.theme"
                         :error="form.errors.theme"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                     />
                     <JetInputError :message="form.errors.theme" class="mt-2" />
                 </div>
@@ -38,7 +38,7 @@
                         v-model="form.subject"
                         :error="form.errors.subject"
                         type="text"
-                        class="mt-1 block w-full"
+                        class="block w-full mt-1"
                     />
                     <JetInputError :message="form.errors.subject" class="mt-2" />
                 </div>
@@ -49,7 +49,7 @@
             <JetSecondaryButton @click.native="closeModal"> Avbryt </JetSecondaryButton>
 
             <JetButton
-                class="ml-2"
+                class="ml-2 umami--click--store-talk"
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
                 @click.native="saveTalk"

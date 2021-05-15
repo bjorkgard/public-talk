@@ -137,7 +137,7 @@
                                 >
                                     <Icons
                                         name="delete"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-charirman"
                                         @click.native="confirmChairmanDeletion(row.id)"
                                     />
                                 </span>

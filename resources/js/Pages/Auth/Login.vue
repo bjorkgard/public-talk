@@ -6,7 +6,7 @@
 
         <JetValidationErrors class="mb-4" />
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
             {{ status }}
         </div>
 
@@ -17,7 +17,7 @@
                     id="email"
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autofocus
                 />
@@ -29,7 +29,7 @@
                     id="password"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="current-password"
                 />
@@ -46,13 +46,13 @@
                 <inertia-link
                     v-if="canResetPassword"
                     :href="route('password.request')"
-                    class="underline text-sm text-gray-600 hover:text-gray-900"
+                    class="text-sm text-gray-600 underline hover:text-gray-900 umami--click--forgot-password"
                 >
                     Glömt ditt lösenord?
                 </inertia-link>
 
                 <JetButton
-                    class="ml-4"
+                    class="ml-4 umami--click--login"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >

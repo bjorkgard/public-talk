@@ -42,7 +42,7 @@
                                 >
                                     <Icons
                                         name="plus"
-                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--add-default-booking"
                                         @click.native="addBooking()"
                                     />
                                 </span>
@@ -173,7 +173,7 @@
                                 >
                                     <Icons
                                         name="thumb"
-                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--send-thanks"
                                         @click.native="thankSpeaker(booking.id)"
                                     />
                                 </span>
@@ -193,7 +193,7 @@
                                 >
                                     <Icons
                                         name="comment"
-                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--comment-booking"
                                         @click.native="commentBooking(booking.id)"
                                     />
                                 </span>
@@ -210,7 +210,7 @@
                                 >
                                     <Icons
                                         name="edit"
-                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--edit-booking"
                                         @click.native="editBooking(booking.id)"
                                     />
                                 </span>
@@ -227,7 +227,7 @@
                                 >
                                     <Icons
                                         name="delete"
-                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-booking"
                                         @click.native="confirmBookingDeletion(booking.id)"
                                     />
                                 </span>
@@ -243,7 +243,7 @@
                                 >
                                     <Icons
                                         name="plus"
-                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="h-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--add-date-booking"
                                         @click.native="addBooking(booking.date)"
                                     />
                                 </span>

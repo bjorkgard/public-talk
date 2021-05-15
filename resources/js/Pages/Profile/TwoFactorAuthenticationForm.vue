@@ -15,7 +15,7 @@
                 Du har inte aktiverat tvåfaktorautentisering.
             </h3>
 
-            <div class="mt-3 max-w-xl text-sm text-gray-600">
+            <div class="max-w-xl mt-3 text-sm text-gray-600">
                 <p>
                     När tvåfaktorautentisering är aktiverad kommer du att uppmanas till en
                     säker, slumpmässig token under autentisering. Du kan hämta den här
@@ -25,7 +25,7 @@
 
             <div v-if="twoFactorEnabled">
                 <div v-if="qrCode">
-                    <div class="mt-4 max-w-xl text-sm text-gray-600">
+                    <div class="max-w-xl mt-4 text-sm text-gray-600">
                         <p class="font-semibold">
                             Tvåfaktorautentisering är nu aktiverad. Skanna följande QR-kod
                             med din telefons autentiseringsapplikation.
@@ -39,7 +39,7 @@
                 </div>
 
                 <div v-if="recoveryCodes.length > 0">
-                    <div class="mt-4 max-w-xl text-sm text-gray-600">
+                    <div class="max-w-xl mt-4 text-sm text-gray-600">
                         <p class="font-semibold">
                             Lagra dessa återställningskoder i en säker lösenordshanterare.
                             De kan användas för att återställa åtkomst till ditt konto om
@@ -48,7 +48,7 @@
                     </div>
 
                     <div
-                        class="grid gap-1 max-w-xl mt-4 px-4 py-4 font-mono text-sm bg-gray-100 rounded-lg"
+                        class="grid max-w-xl gap-1 px-4 py-4 mt-4 font-mono text-sm bg-gray-100 rounded-lg"
                     >
                         <div v-for="code in recoveryCodes" :key="code">
                             {{ code }}
@@ -63,6 +63,7 @@
                         <JetButton
                             type="button"
                             :class="{ 'opacity-25': enabling }"
+                            class="umami--click--activate-two-factor"
                             :disabled="enabling"
                         >
                             Aktivera
@@ -89,6 +90,7 @@
                     <JetConfirmsPassword @confirmed="disableTwoFactorAuthentication">
                         <JetDangerButton
                             :class="{ 'opacity-25': disabling }"
+                            class="umami--click--disable-two-factor"
                             :disabled="disabling"
                         >
                             Inaktivera

@@ -209,6 +209,7 @@
 
                             <JetButton
                                 :class="{ 'opacity-25': form.processing }"
+                                class="umami--click--store-booking"
                                 :disabled="form.processing"
                             >
                                 Spara

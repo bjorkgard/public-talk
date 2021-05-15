@@ -216,6 +216,7 @@
 
             <JetButton
                 :class="{ 'opacity-25': form.processing }"
+                class="umami--click--update-notification"
                 :disabled="form.processing"
             >
                 Spara

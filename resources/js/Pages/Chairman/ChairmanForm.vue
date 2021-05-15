@@ -67,7 +67,7 @@
             <JetSecondaryButton @click.native="closeModal"> Avbryt </JetSecondaryButton>
 
             <JetButton
-                class="ml-2"
+                class="ml-2umami--click--store-chairman"
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
                 @click.native="saveChairman"

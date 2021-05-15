@@ -13,7 +13,7 @@
                     v-model="form.name"
                     :error="form.errors.name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.name" class="mt-2" />
             </div>
@@ -25,7 +25,7 @@
                     v-model="form.address"
                     :error="form.errors.address"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.address" class="mt-2" />
             </div>
@@ -37,7 +37,7 @@
                     v-model="form.zip"
                     :error="form.errors.zip"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.zip" class="mt-2" />
             </div>
@@ -49,7 +49,7 @@
                     v-model="form.city"
                     :error="form.errors.city"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.city" class="mt-2" />
             </div>
@@ -61,7 +61,7 @@
                     v-model="form.latitude"
                     :error="form.errors.latitude"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.latitude" class="mt-2" />
             </div>
@@ -73,7 +73,7 @@
                     v-model="form.longitude"
                     :error="form.errors.longitude"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.longitude" class="mt-2" />
             </div>
@@ -86,6 +86,7 @@
 
             <JetButton
                 :class="{ 'opacity-25': form.processing }"
+                class="umami--click--update-congregation"
                 :disabled="form.processing"
             >
                 Spara

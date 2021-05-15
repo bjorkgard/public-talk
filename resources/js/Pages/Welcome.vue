@@ -42,14 +42,14 @@
                                         <inertia-link
                                             v-if="!$page.props.user"
                                             :href="route('register')"
-                                            class="ml-8 font-medium text-gray-700 transition duration-150 ease-in-out hover:text-teal-600"
+                                            class="ml-8 font-medium text-gray-700 transition duration-150 ease-in-out hover:text-teal-600 umami--click--create-account"
                                         >
                                             Skapa konto
                                         </inertia-link>
                                         <inertia-link
                                             v-if="!$page.props.user"
                                             :href="route('login')"
-                                            class="ml-8 font-medium text-teal-700 transition duration-150 ease-in-out hover:text-teal-600"
+                                            class="ml-8 font-medium text-teal-700 transition duration-150 ease-in-out hover:text-teal-600 umami--click--login"
                                         >
                                             Logga in
                                         </inertia-link>

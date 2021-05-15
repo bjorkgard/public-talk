@@ -61,7 +61,7 @@
 
                                 <span
                                     v-if="session.is_current_device"
-                                    class="text-green-500 font-semibold"
+                                    class="font-semibold text-green-500"
                                     >Denna enhet</span
                                 >
                                 <span v-else>Senast aktiv {{ session.last_active }}</span>
@@ -72,7 +72,10 @@
             </div>
 
             <div class="flex items-center mt-5">
-                <JetButton @click.native="confirmLogout">
+                <JetButton
+                    class="umami--click--logout-sessions"
+                    @click.native="confirmLogout"
+                >
                     Logga ut andra webbläsarsessioner
                 </JetButton>
 
@@ -94,7 +97,7 @@
                             ref="password"
                             v-model="form.password"
                             type="password"
-                            class="mt-1 block w-3/4"
+                            class="block w-3/4 mt-1"
                             placeholder="Password"
                             @keyup.enter.native="logoutOtherBrowserSessions"
                         />

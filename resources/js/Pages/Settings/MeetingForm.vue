@@ -11,7 +11,7 @@
                 <select
                     id="day"
                     v-model="form.day"
-                    class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-teak-300 sm:text-sm sm:leading-5"
+                    class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-teak-300 sm:text-sm sm:leading-5"
                 >
                     <option value="Monday">Måndag</option>
                     <option value="Tuesday">Tisdag</option>
@@ -31,7 +31,7 @@
                     v-model="form.time"
                     :error="form.errors.time"
                     type="time"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                 />
                 <JetInputError :message="form.errors.time" class="mt-2" />
             </div>
@@ -44,6 +44,7 @@
 
             <JetButton
                 :class="{ 'opacity-25': form.processing }"
+                class="umami--click--update-meeting-info"
                 :disabled="form.processing"
             >
                 Spara

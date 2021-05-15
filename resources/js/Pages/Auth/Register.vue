@@ -103,7 +103,7 @@
                 </inertia-link>
 
                 <JetButton
-                    class="ml-4"
+                    class="ml-4 umami--click--store-account"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >

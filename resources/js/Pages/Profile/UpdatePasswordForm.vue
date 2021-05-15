@@ -15,7 +15,7 @@
                     ref="current_password"
                     v-model="form.current_password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     autocomplete="current-password"
                 />
                 <JetInputError :message="form.errors.current_password" class="mt-2" />
@@ -28,7 +28,7 @@
                     ref="password"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     autocomplete="new-password"
                 />
                 <JetInputError :message="form.errors.password" class="mt-2" />
@@ -40,7 +40,7 @@
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     autocomplete="new-password"
                 />
                 <JetInputError
@@ -57,6 +57,7 @@
 
             <JetButton
                 :class="{ 'opacity-25': form.processing }"
+                class="umami--click--update-password"
                 :disabled="form.processing"
             >
                 Spara

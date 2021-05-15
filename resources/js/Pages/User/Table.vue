@@ -32,7 +32,7 @@
                                 >
                                     <Icons
                                         name="plus"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--add-user"
                                         @click.native="addUser()"
                                     />
                                 </span>
@@ -71,14 +71,14 @@
                                 >
                                     <Icons
                                         name="link"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--invite-user"
                                         @click.native="inviteUser(row)"
                                     />
                                 </span>
                                 <span title="Redigera användare">
                                     <Icons
                                         name="edit"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--edit-user"
                                         @click.native="editUser(row)"
                                     />
                                 </span>
@@ -88,7 +88,7 @@
                                 >
                                     <Icons
                                         name="delete"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-user"
                                         @click.native="confirmUserDeletion(row.id)"
                                     />
                                 </span>
