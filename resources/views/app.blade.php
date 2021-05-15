@@ -29,6 +29,8 @@
     <script src="{{ mix('/js/vendor.js') }}" defer></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
 
+    <script async defer data-website-id="0c131d7f-c550-4186-bc4a-cc5b913b9aeb" src="https://stats.jwapp.info/umami.js"></script>
+
     <script src="https://js.stripe.com/v3/"></script>
 
     <script data-name="BMC-Widget" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="bjorkgard" data-description="" data-message="Tack för besöket! Om du vill kan du bjuda på en kaffe." data-color="#5F7FFF" data-position="" data-x_margin="18" data-y_margin="18"></script>
