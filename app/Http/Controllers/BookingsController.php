@@ -147,7 +147,7 @@ class BookingsController extends Controller
                 'comments' => $booking->comments,
             ],
             'speakers' => Speaker::all(),
-            'talks' => Talk::with('speakers')->get(),
+            'talks' => Talk::with('speakers')->withTrashed()->get(),
             'chairmen' => Chairman::all()
         ]);
     }
