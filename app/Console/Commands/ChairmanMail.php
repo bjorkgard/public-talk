@@ -36,35 +36,37 @@ class ChairmanMail extends Command
         $bookings = Booking::where('date', $nextWeek)->with('settings', 'chairman')->get();
 
         foreach ($bookings as $booking) {
-            if ($booking->chairman->email && $booking->settings->notifications->chairman_mail) {
-                Mail::to($booking->chairman->email, $booking->chairman->name)->queue(new BookingChairman($booking));
-            }
+            if ($booking->chairman) {
+                if ($booking->chairman->email && $booking->settings->notifications->chairman_mail) {
+                    Mail::to($booking->chairman->email, $booking->chairman->name)->queue(new BookingChairman($booking));
+                }
 
-            if ($booking->settings->subscribed('default') && $booking->chairman->phone && $booking->settings->notifications->chairman_sms) {
-                $php46ElksClient = new Php46ElksClient(config('services.46elks.username'), config('services.46elks.password'));
-                $sms = $php46ElksClient->sms()->SMSDispatcher();
+                if ($booking->settings->subscribed('default') && $booking->chairman->phone && $booking->settings->notifications->chairman_sms) {
+                    $php46ElksClient = new Php46ElksClient(config('services.46elks.username'), config('services.46elks.password'));
+                    $sms = $php46ElksClient->sms()->SMSDispatcher();
 
-                $talk = !is_null($booking->talk) ? $booking->talk->theme : $booking->custom_talk;
-                $speaker = !is_null($booking->speaker) ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker;
-                $phone = !is_null($booking->speaker) ? $booking->speaker->formated_phone : '';
-                $congregation = !is_null($booking->speaker) ? $booking->speaker->congregation : '';
+                    $talk = !is_null($booking->talk) ? $booking->talk->theme : $booking->custom_talk;
+                    $speaker = !is_null($booking->speaker) ? $booking->speaker->firstname . ' ' . $booking->speaker->lastname : $booking->custom_speaker;
+                    $phone = !is_null($booking->speaker) ? $booking->speaker->formated_phone : '';
+                    $congregation = !is_null($booking->speaker) ? $booking->speaker->congregation : '';
 
-                $response = $sms
-                    ->from($booking->user->settings->number->number)
-                    ->recipient($booking->chairman->phone)
-                    ->line('Du har blivit utsedd till ordförande för följande föreläsning.')
-                    ->line()
-                    ->line('Datum: ' . $booking->date)
-                    ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
-                    ->line('Tema: ' . $talk)
-                    ->line('Talare: ' . $speaker)
-                    ->line('Telefon: ' . $phone)
-                    ->line('Församling: ' . $congregation)
-                    ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
-                    ->send();
+                    $response = $sms
+                        ->from($booking->user->settings->number->number)
+                        ->recipient($booking->chairman->phone)
+                        ->line('Du har blivit utsedd till ordförande för följande föreläsning.')
+                        ->line()
+                        ->line('Datum: ' . $booking->date)
+                        ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
+                        ->line('Tema: ' . $talk)
+                        ->line('Talare: ' . $speaker)
+                        ->line('Telefon: ' . $phone)
+                        ->line('Församling: ' . $congregation)
+                        ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
+                        ->send();
 
-                // Report to Stripe number of SMS parts
-                $booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);
+                    // Report to Stripe number of SMS parts
+                    $booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);
+                }
             }
         }
     }
