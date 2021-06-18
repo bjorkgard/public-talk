@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Mail\BookingChairman;
 use App\Models\Booking;
+use App\Models\MessageLog;
 use App\Repositories\Php46Elks\Php46ElksClient;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -63,6 +64,13 @@ class ChairmanMail extends Command
                         ->line('Församling: ' . $congregation)
                         ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
                         ->send();
+
+                    MessageLog::create([
+                        'user_id' => $booking->user->id,
+                        'from' => $response[0]['from'],
+                        'to' => $response[0]['to'],
+                        'message' => $response[0]['message']
+                    ]);
 
                     // Report to Stripe number of SMS parts
                     $booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);

@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\BookingDone;
 use App\Mail\BookingConfirmation;
+use App\Models\MessageLog;
 use App\Repositories\Php46Elks\Php46ElksClient;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -53,6 +54,13 @@ class SendBookingConfirmation implements ShouldQueue
                     ->line('Tid: ' . substr($event->booking->time, 0, strrpos($event->booking->time, ':')))
                     ->line('Tema: (' . $event->booking->talk->number . ') ' . $event->booking->talk->theme)
                     ->send();
+
+                MessageLog::create([
+                    'user_id' => $event->booking->user->id,
+                    'from' => $response[0]['from'],
+                    'to' => $response[0]['to'],
+                    'message' => $response[0]['message']
+                ]);
 
                 // Report to Stripe number of SMS parts
                 $event->booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);

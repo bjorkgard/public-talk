@@ -12,6 +12,7 @@ use App\Mail\BookingDeleted;
 use App\Mail\SendThankYou;
 use App\Models\Booking;
 use App\Models\Chairman;
+use App\Models\MessageLog;
 use App\Models\Speaker;
 use App\Models\Talk;
 use App\Repositories\Php46Elks\Php46ElksClient;
@@ -208,6 +209,13 @@ class BookingsController extends Controller
                 ->line('Med vänlig hälsning')
                 ->line($booking->user->name . ', ' . $booking->user->formated_phone)
                 ->send();
+
+            MessageLog::create([
+                'user_id' => $booking->user->id,
+                'from' => $response[0]['from'],
+                'to' => $response[0]['to'],
+                'message' => $response[0]['message']
+            ]);
 
             // Report to Stripe number of SMS parts
             $booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Mail\BookingReminder;
 use App\Models\Booking;
+use App\Models\MessageLog;
 use App\Repositories\Php46Elks\Php46ElksClient;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -59,6 +60,13 @@ class ReminderSpeaker extends Command
                         ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
                         ->line('Tema: (' . $booking->talk->number . ') ' . $booking->talk->theme)
                         ->send();
+
+                    MessageLog::create([
+                        'user_id' => $booking->user->id,
+                        'from' => $response[0]['from'],
+                        'to' => $response[0]['to'],
+                        'message' => $response[0]['message']
+                    ]);
 
                     // Report to Stripe number of SMS parts
                     $booking->settings->subscription('default')->reportUsageFor(config('services.stripe.sms'), $response[0]['parts']);
