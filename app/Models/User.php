@@ -101,6 +101,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(\App\Models\Booking::class);
     }
 
+    public function message_logs()
+    {
+        return $this->hasMany(\App\Models\MessageLog::class);
+    }
+
     public function speakers()
     {
         return $this->hasManyThrough(\App\Models\Speaker::class, \App\Models\Settings::class);

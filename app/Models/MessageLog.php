@@ -20,4 +20,9 @@ class MessageLog extends Model
         'from',
         'message',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }
