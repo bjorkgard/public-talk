@@ -9,6 +9,7 @@ use App\Http\Controllers\SettingsMeetingController;
 use App\Http\Controllers\SettingsNotificationsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SettingsExtraController;
+use App\Http\Controllers\SMSResponseController;
 use App\Http\Controllers\SpeakerController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TalkController;
@@ -66,3 +67,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('/bookings/{identifier}', [ExternalBookingController::class, 'index'])->name('bookings.thanks');
 Route::post('/bookings/greeting/{booking}', [BookingsController::class, 'greeting'])->name('bookings.greeting');
 Route::get('/reset-password', [AuthenticationController::class, 'resetPassword']);
+Route::get('/sms', SMSResponseController::class);
