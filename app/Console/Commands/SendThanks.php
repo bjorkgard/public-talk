@@ -30,7 +30,7 @@ class SendThanks extends Command
     public function handle()
     {
         $yesterday = Carbon::now()->subDays(1)->format('Y-m-d');
-        $bookings = Booking::where('date', $yesterday)->where('thanked', false)->whereNotNull('identifier')->with('user', 'settings')->get();
+        $bookings = Booking::where('date', $yesterday)->where('thanked', false)->where('no_meeting', false)->whereNotNull('identifier')->with('user', 'settings')->get();
 
         foreach ($bookings as $booking) {
             if (($booking->speaker->email && $booking->settings->notifications->thanks_mail) || ($booking->speaker->phone && $booking->settings->notifications->thanks_sms)) {

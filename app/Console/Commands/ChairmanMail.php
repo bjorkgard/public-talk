@@ -34,7 +34,7 @@ class ChairmanMail extends Command
     public function handle()
     {
         $nextWeek = Carbon::now()->addDays(7)->format('Y-m-d');
-        $bookings = Booking::where('date', $nextWeek)->with('settings', 'chairman')->get();
+        $bookings = Booking::where('date', $nextWeek)->where('no_meeting', false)->with('settings', 'chairman')->get();
 
         foreach ($bookings as $booking) {
             if ($booking->chairman) {
