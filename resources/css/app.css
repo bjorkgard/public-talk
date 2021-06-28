@@ -3,3 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import 'vue-select/dist/vue-select.css';
+
+input[type='search'] {
+    border: none !important;
+}
