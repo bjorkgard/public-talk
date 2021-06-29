@@ -14,8 +14,8 @@ require('laravel-mix-polyfill')
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
-    .postCss('resources/css/app.css', 'public/css')
     .extract()
+    .postCss('resources/css/app.css', 'public/css', [require('tailwindcss')])
     .polyfill({
         enabled: mix.inProduction(),
         useBuiltIns: 'usage',
