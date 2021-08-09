@@ -31,7 +31,6 @@ class StripePostHandler implements ShouldQueue
      */
     public function handle(WebhookHandled $event)
     {
-        ray()->newScreen();
         $type = $event->payload['type'];
         $payload = $event->payload;
 
