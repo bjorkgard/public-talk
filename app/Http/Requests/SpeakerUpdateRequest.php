@@ -30,7 +30,7 @@ class SpeakerUpdateRequest extends FormRequest
             'congregation' => ['required', 'string', 'max:255'],
             'phone_country' => ['required_with:phone'],
             'phone' => ['nullable', 'phone'],
-            'email' => ['email', 'max:255'],
+            'email' => ['email', 'max:255', 'nullable'],
             'comments' => ['max:255']
         ];
     }
