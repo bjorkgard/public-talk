@@ -90,7 +90,7 @@ class BookingsController extends Controller
             ],
             'speakers' => Speaker::all(),
             'talks' => Talk::with('speakers')->get(),
-            'chairmen' => Chairman::all()
+            'chairmen' => Chairman::with('lastBooking')->get()
         ]);
     }
 
@@ -153,7 +153,7 @@ class BookingsController extends Controller
             ],
             'speakers' => Speaker::all(),
             'talks' => Talk::with('speakers')->withTrashed()->get(),
-            'chairmen' => Chairman::all()
+            'chairmen' => Chairman::with('lastBooking')->get()
         ]);
     }
 

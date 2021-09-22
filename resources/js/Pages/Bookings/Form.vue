@@ -98,7 +98,15 @@
                                     id="exception"
                                     v-model="form.exception"
                                     type="checkbox"
-                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
+                                    class="
+                                        w-4
+                                        h-4
+                                        text-teal-600
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                        form-checkbox
+                                    "
                                 />
                             </div>
                             <div class="ml-3 text-sm leading-5">
@@ -160,7 +168,14 @@
                                 :options="chairmen"
                                 :reduce="(chairman) => chairman.id"
                                 class="rounded-md shadow-sm style-chooser form-input"
-                            />
+                            >
+                                <template v-slot:option="option">
+                                    {{ option.name }}
+                                    <span class="text-sm text-gray-600">
+                                        ({{ option.last_booking.date }})
+                                    </span>
+                                </template>
+                            </v-select>
                             <JetInputError
                                 :message="form.errors.chairman_id"
                                 class="mt-2"
@@ -173,7 +188,15 @@
                                     id="no_meeting"
                                     v-model="form.no_meeting"
                                     type="checkbox"
-                                    class="w-4 h-4 text-teal-600 transition duration-150 ease-in-out form-checkbox"
+                                    class="
+                                        w-4
+                                        h-4
+                                        text-teal-600
+                                        transition
+                                        duration-150
+                                        ease-in-out
+                                        form-checkbox
+                                    "
                                     @input="clearForm"
                                 />
                             </div>
