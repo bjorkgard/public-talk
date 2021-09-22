@@ -77,7 +77,7 @@ class Speaker extends Model
 
     public function lastBooking()
     {
-        return $this->hasOne(Booking::class)->orderBy('date', 'desc');
+        return $this->hasOne(Booking::class)->orderBy('date', 'desc')->setEagerLoads([]);
     }
 
     /**
