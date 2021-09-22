@@ -6,7 +6,17 @@
                     <thead>
                         <tr>
                             <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
+                                class="
+                                    px-6
+                                    py-3
+                                    text-xs
+                                    font-medium
+                                    leading-4
+                                    tracking-wider
+                                    text-left text-gray-500
+                                    uppercase
+                                    bg-gray-50
+                                "
                             >
                                 Namn
                                 <inertia-link
@@ -23,7 +33,17 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
+                                class="
+                                    px-6
+                                    py-3
+                                    text-xs
+                                    font-medium
+                                    leading-4
+                                    tracking-wider
+                                    text-left text-gray-500
+                                    uppercase
+                                    bg-gray-50
+                                "
                             >
                                 E-postadress
                                 <inertia-link
@@ -40,7 +60,17 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
+                                class="
+                                    px-6
+                                    py-3
+                                    text-xs
+                                    font-medium
+                                    leading-4
+                                    tracking-wider
+                                    text-left text-gray-500
+                                    uppercase
+                                    bg-gray-50
+                                "
                             >
                                 Telefon
                                 <inertia-link
@@ -57,9 +87,31 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
+                                class="
+                                    px-6
+                                    py-3
+                                    text-xs
+                                    font-medium
+                                    leading-4
+                                    tracking-wider
+                                    text-left text-gray-500
+                                    uppercase
+                                    bg-gray-50
+                                "
                             >
                                 Senast
+                                <inertia-link
+                                    :href="`${chairmen.path}?order=asc&sort=date`"
+                                    class="text-gray-400 hover:text-teak-500"
+                                >
+                                    <Icons name="up" class="w-4" />
+                                </inertia-link>
+                                <inertia-link
+                                    :href="`${chairmen.path}?order=desc&sort=date`"
+                                    class="text-gray-400 hover:text-teak-500"
+                                >
+                                    <Icons name="down" class="w-4 -m-2" />
+                                </inertia-link>
                             </th>
                             <th class="px-6 py-3 text-right bg-gray-50">
                                 <span
@@ -73,7 +125,12 @@
                                 >
                                     <Icons
                                         name="plus"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="
+                                            w-5
+                                            text-gray-500
+                                            cursor-pointer
+                                            hover:text-teal-500
+                                        "
                                         @click.native="addChairman()"
                                     />
                                 </span>
@@ -87,29 +144,67 @@
                             :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
                         >
                             <td
-                                class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap"
+                                class="
+                                    px-6
+                                    py-4
+                                    text-sm
+                                    font-medium
+                                    leading-5
+                                    text-gray-900
+                                    whitespace-no-wrap
+                                "
                             >
                                 {{ row.name }}
                             </td>
                             <td
-                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
+                                class="
+                                    px-6
+                                    py-4
+                                    text-sm
+                                    leading-5
+                                    text-gray-500
+                                    whitespace-no-wrap
+                                "
                             >
                                 {{ row.email }}
                             </td>
                             <td
-                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
+                                class="
+                                    px-6
+                                    py-4
+                                    text-sm
+                                    leading-5
+                                    text-gray-500
+                                    whitespace-no-wrap
+                                "
                             >
                                 {{ row.formated_phone }}
                             </td>
                             <td
-                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap cursor-default"
+                                class="
+                                    px-6
+                                    py-4
+                                    text-sm
+                                    leading-5
+                                    text-gray-500
+                                    whitespace-no-wrap
+                                    cursor-default
+                                "
                             >
                                 <span>
-                                    {{ row.last_booking ? row.last_booking.date : '' }}
+                                    {{ row.date ? row.date : '' }}
                                 </span>
                             </td>
                             <td
-                                class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
+                                class="
+                                    px-6
+                                    py-4
+                                    text-sm
+                                    font-medium
+                                    leading-5
+                                    text-right
+                                    whitespace-no-wrap
+                                "
                             >
                                 <span
                                     v-if="
@@ -122,7 +217,12 @@
                                 >
                                     <Icons
                                         name="edit"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500"
+                                        class="
+                                            w-5
+                                            text-gray-500
+                                            cursor-pointer
+                                            hover:text-teal-500
+                                        "
                                         @click.native="editChairman(row)"
                                     />
                                 </span>
@@ -137,7 +237,13 @@
                                 >
                                     <Icons
                                         name="delete"
-                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-charirman"
+                                        class="
+                                            w-5
+                                            text-gray-500
+                                            cursor-pointer
+                                            hover:text-teal-500
+                                            umami--click--delete-charirman
+                                        "
                                         @click.native="confirmChairmanDeletion(row.id)"
                                     />
                                 </span>
@@ -146,7 +252,16 @@
                     </tbody>
                 </table>
                 <nav
-                    class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
+                    class="
+                        flex
+                        items-center
+                        justify-between
+                        px-4
+                        py-3
+                        bg-white
+                        border-t border-gray-200
+                        sm:px-6
+                    "
                 >
                     <div class="hidden sm:block">
                         <p
