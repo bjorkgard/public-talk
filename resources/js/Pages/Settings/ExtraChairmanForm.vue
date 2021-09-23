@@ -3,7 +3,7 @@
         <template #title> Information till ordförande </template>
 
         <template #description>
-            Här kan du fylla i information som skickas till broderns som är ordförande.
+            Här kan du fylla i information som skickas till brodern som är ordförande.
         </template>
 
         <template #form>
@@ -11,7 +11,7 @@
                 <div class="col-span-6">
                     <JetLabel
                         for="reminder"
-                        value="Talaren har fått en automatisk påminnelse"
+                        value="Om talaren har fått en automatisk påminnelse"
                     />
                     <JetInput
                         id="reminder"
@@ -19,14 +19,14 @@
                         :error="form.errors.reminder"
                         type="text"
                         class="block w-full mt-1"
-                        placeholder="Meddelande om talaren har fått en påminnelse"
+                        placeholder="Talaren har fått en automatisk påminnelse"
                     />
                     <JetInputError :message="form.errors.reminder" class="mt-2" />
                 </div>
                 <div class="col-span-6">
                     <JetLabel
                         for="noReminder"
-                        value="Talaren har inte fått en automatisk påminnelse"
+                        value="Om talaren INTE fått en påminnelse"
                     />
                     <JetInput
                         id="noReminder"
@@ -34,7 +34,7 @@
                         :error="form.errors.noReminder"
                         type="text"
                         class="block w-full mt-1"
-                        placeholder="Meddelande om talaren inte fått en påminnelse"
+                        placeholder="Talaren har inte fått en automatisk påminnelse"
                     />
                     <JetInputError :message="form.errors.noReminder" class="mt-2" />
                 </div>
@@ -46,7 +46,7 @@
                         :error="form.errors.message"
                         type="text"
                         class="block w-full mt-1"
-                        placeholder="Ordförande får alltid detta meddelande"
+                        placeholder="Det här meddelandet visas alltid för den som är ordförande"
                     />
                     <JetInputError :message="form.errors.message" class="mt-2" />
                 </div>
