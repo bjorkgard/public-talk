@@ -43,6 +43,11 @@ class SendBookingConfirmation implements ShouldQueue
                 $php46ElksClient = new Php46ElksClient(config('services.46elks.username'), config('services.46elks.password'));
                 $sms = $php46ElksClient->sms()->SMSDispatcher();
 
+                $extra = '';
+                foreach ($event->booking->settings->extra as $field) {
+                    $extra .= $field['label'] . ': ' . $field['value'] . '\n';
+                }
+
                 $response = $sms
                     ->from($event->booking->user->settings->number->number)
                     ->recipient($event->booking->speaker->phone)
@@ -53,6 +58,8 @@ class SendBookingConfirmation implements ShouldQueue
                     ->line('Datum: ' . $event->booking->date)
                     ->line('Tid: ' . substr($event->booking->time, 0, strrpos($event->booking->time, ':')))
                     ->line('Tema: (' . $event->booking->talk->number . ') ' . $event->booking->talk->theme)
+                    ->line()
+                    ->line($extra)
                     ->send();
 
                 MessageLog::create([
