@@ -36,6 +36,7 @@ class Settings extends Model
         'congregation' => 'object',
         'meeting' => 'object',
         'extra' => 'array',
+        'chairman' => 'object',
         'notifications' => 'object',
     ];
 

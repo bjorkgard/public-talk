@@ -62,7 +62,10 @@ class ChairmanMail extends Command
                         ->line('Talare: ' . $speaker)
                         ->line('Telefon: ' . $phone)
                         ->line('Församling: ' . $congregation)
-                        ->line(!$booking->reminder ? 'Talaren har inte fått någon automatisk påminnelse' : '')
+                        ->line()
+                        ->line(isset($booking->user->settings->chairman->message) ? $booking->user->settings->chairman->message : '')
+                        ->line()
+                        ->line($booking->reminder ? (isset($booking->settings->chairman->reminder) ? $booking->settings->chairman->reminder : 'Talaren har fått en automatisk påminnelse') : (isset($booking->settings->chairman->noReminder) ? $booking->settings->chairman->noReminder : 'Talaren har inte fått en automatisk påminnelse'))
                         ->send();
 
                     MessageLog::create([

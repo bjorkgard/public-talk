@@ -18,6 +18,9 @@
                 <ExtraForm :settings="user.settings" />
 
                 <JetSectionBorder />
+                <ExtraChairmanForm :settings="user.settings" />
+
+                <JetSectionBorder />
                 <NotificationsForm :settings="user.settings" />
 
                 <JetSectionBorder />
@@ -34,6 +37,7 @@ import CongregationForm from './CongregationForm'
 import MeetingForm from './MeetingForm'
 import NotificationsForm from './NotificationsForm'
 import ExtraForm from './ExtraForm'
+import ExtraChairmanForm from './ExtraChairmanForm'
 import Subscriptions from './Subscriptions'
 import HelpButton from '@Shared/HelpButton'
 
@@ -45,6 +49,7 @@ export default {
         MeetingForm,
         NotificationsForm,
         ExtraForm,
+        ExtraChairmanForm,
         Subscriptions,
         HelpButton
     },
