@@ -171,7 +171,10 @@
                             >
                                 <template v-slot:option="option">
                                     {{ option.name }}
-                                    <span class="text-sm text-gray-600">
+                                    <span
+                                        class="text-sm text-gray-600"
+                                        v-if="option.last_booking"
+                                    >
                                         ({{ option.last_booking.date }})
                                     </span>
                                 </template>
