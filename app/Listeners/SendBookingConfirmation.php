@@ -45,7 +45,8 @@ class SendBookingConfirmation implements ShouldQueue
 
                 $extra = '';
                 foreach ($event->booking->settings->extra as $field) {
-                    $extra .= $field['label'] . ': ' . $field['value'] . '\n';
+                    $extra .= $field['label'] . ': ' . $field['value'] . '
+                    ';
                 }
 
                 $response = $sms
