@@ -3,8 +3,26 @@
 
 Du har blivit utsedd till ordförande för följande föreläsning.
 
-@if(!$booking->reminder)
-Talaren har inte fått någon automatisk påminnelse!
+@if(isset($booking->settings->chairman->message))
+{{$booking->settings->chairman->message}}
+@endif
+
+@if($booking->reminder)
+
+@if(isset($booking->settings->chairman->reminder))
+{{$booking->settings->chairman->reminder}}
+@else
+Talaren har fått en automatisk påminnelse
+@endif
+
+@else
+
+@if(isset($booking->settings->chairman->noReminder))
+{{$booking->settings->chairman->noReminder}}
+@else
+Talaren har inte fått en automatisk påminnelse
+@endif
+
 @endif
 
 @component('mail::table')

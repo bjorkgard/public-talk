@@ -8,6 +8,7 @@ use App\Http\Requests\SpeakerUpdateRequest;
 use App\Models\Speaker;
 use App\Repositories\CountryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -25,26 +26,43 @@ class SpeakerController extends Controller
         $order = $request->has('order') ? $request->input('order') : 'asc';
         $search = $request->has('search') ? $request->input('search') : '';
 
-        //TODO: Only get the latest booking for all talks
         if ($request->has('search')) {
-            $speakers = Speaker::with('lastBooking')
-                ->where('firstname', 'like', '%' . $request->input('search') . '%')
-                ->orWhere('lastname', 'like', '%' . $request->input('search') . '%')
-                ->orWhere('congregation', 'like', '%' . $request->input('search') . '%')
-                ->orWhere('phone', 'like', '%' . $request->input('search') . '%')
-                ->orWhere('email', 'like', '%' . $request->input('search') . '%')
+            $speakers = Speaker::withoutGlobalScopes()
+                ->select('speakers.*', 'bookings.date')
+                ->leftJoin('bookings', function ($join) {
+                    $join->on('speakers.id', 'bookings.speaker_id')
+                        ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join speakers as u2 on u2.id = a2.speaker_id group by u2.id)');
+                })
+                ->whereNull('speakers.deleted_at')
+                ->where('speakers.settings_id', Auth::user()->settings->id)
+                ->where(function ($query) use ($search) {
+                    $query->where('firstname', 'like', '%' . $search . '%')
+                        ->orWhere('lastname', 'like', '%' . $search . '%')
+                        ->orWhere('congregation', 'like', '%' . $search . '%')
+                        ->orWhere('phone', 'like', '%' . $search . '%')
+                        ->orWhere('email', 'like', '%' . $search . '%');
+                })
                 ->orderBy($sort, $order)
                 ->paginate();
         } else {
-            $speakers = Speaker::with('lastBooking')->orderBy($sort, $order)->paginate();
+            $speakers = Speaker::withoutGlobalScopes()
+                ->select('speakers.*', 'bookings.date')
+                ->leftJoin('bookings', function ($join) {
+                    $join->on('speakers.id', 'bookings.speaker_id')
+                        ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join speakers as u2 on u2.id = a2.speaker_id group by u2.id)');
+                })
+                ->whereNull('speakers.deleted_at')
+                ->where('speakers.settings_id', Auth::user()->settings->id)
+                ->orderBy($sort, $order)
+                ->paginate();
         }
         $speakers->appends(['sort' => $sort, 'order' => $order, 'search' => $search]);
 
         $countries = $repo->getAllCountryCodes();
 
         return Inertia::render('Speakers/Index', [
-            'speakers' => $speakers, 
-            'search' => $search, 
+            'speakers' => $speakers,
+            'search' => $search,
             'countries' => $countries
         ]);
     }

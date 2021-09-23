@@ -49,6 +49,11 @@ class ReminderSpeaker extends Command
                     $php46ElksClient = new Php46ElksClient(config('services.46elks.username'), config('services.46elks.password'));
                     $sms = $php46ElksClient->sms()->SMSDispatcher();
 
+                    $extra = '';
+                    foreach ($booking->settings->extra as $field) {
+                        $extra .= $field['label'] . ': ' . $field['value'] . '\n';
+                    }
+
                     $response = $sms
                         ->from($booking->user->settings->number->number)
                         ->recipient($booking->speaker->phone)
@@ -59,6 +64,8 @@ class ReminderSpeaker extends Command
                         ->line('Datum: ' . $booking->date)
                         ->line('Tid: ' . substr($booking->time, 0, strrpos($booking->time, ':')))
                         ->line('Tema: (' . $booking->talk->number . ') ' . $booking->talk->theme)
+                        ->line()
+                        ->line($extra)
                         ->send();
 
                     MessageLog::create([

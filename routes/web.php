@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ChairmanController;
 use App\Http\Controllers\ExternalBookingController;
+use App\Http\Controllers\SettingsChairmanController;
 use App\Http\Controllers\SettingsCongregationController;
 use App\Http\Controllers\SettingsMeetingController;
 use App\Http\Controllers\SettingsNotificationsController;
@@ -46,6 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('settings.congregation', SettingsCongregationController::class)->only(['update']);
     Route::resource('settings.meeting', SettingsMeetingController::class)->only(['update']);
     Route::resource('settings.extra', SettingsExtraController::class)->only(['update']);
+    Route::resource('settings.chairman', SettingsChairmanController::class)->only(['update']);
     Route::resource('settings.notifications', SettingsNotificationsController::class)->only(['update']);
 
     Route::resource('speakers', SpeakerController::class)->except(['edit', 'create']);

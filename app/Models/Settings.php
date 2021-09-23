@@ -36,6 +36,7 @@ class Settings extends Model
         'congregation' => 'object',
         'meeting' => 'object',
         'extra' => 'array',
+        'chairman' => 'object',
         'notifications' => 'object',
     ];
 
@@ -48,6 +49,7 @@ class Settings extends Model
         'congregation' => '{"name" : ""}',
         'meeting' => '{"day" : "Sunday", "time" : ""}',
         'extra' => '[]',
+        'chairman' => '{}',
         'notifications' => '{"confirmation_mail" : false, "confirmation_sms" : false, "reminder_mail" : false, "reminder_sms" : false, "thanks_mail" : false, "thanks_sms" : false, "chairman_mail" : false, "chairman_sms" : false}',
     ];
 

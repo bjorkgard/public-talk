@@ -29,6 +29,7 @@ class TalkController extends Controller
             $talks = Talk::with('lastBooking')
                 ->where('theme', 'like', '%' . $request->input('search') . '%')
                 ->orWhere('subject', 'like', '%' . $request->input('search') . '%')
+                ->orWhere('number', 'like', '%' . $request->input('search') . '%')
                 ->orderBy($sort, $order)
                 ->paginate();
         } else {
