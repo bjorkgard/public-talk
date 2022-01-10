@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -15,8 +14,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain'   => env('MAILGUN_DOMAIN'),
+        'secret'   => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
@@ -25,22 +24,25 @@ return [
     ],
 
     'ses' => [
-        'key' => env('AWS_ACCESS_KEY_ID'),
+        'key'    => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
     'stripe' => [
-        'key' => env('STRIPE_KEY'),
+        'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
-        'phone' => env('STRIPE_PHONE'),
-        'sms' => env('STRIPE_SMS'),
+        'phone'  => env('STRIPE_PHONE'),
+        'sms'    => env('STRIPE_SMS'),
     ],
 
     '46elks' => [
         'username' => env('FORTY_SIX_ELKS_USERNAME'),
         'password' => env('FORTY_SIX_ELKS_PASSWORD'),
-        'dryrun' => env('FORTY_SIX_ELKS_DRYRUN', false),
+        'dryrun'   => env('FORTY_SIX_ELKS_DRYRUN', false),
     ],
 
+    'horizon' => [
+        'secret' => env('HORIZON_SECRET'),
+    ],
 ];
