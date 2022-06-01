@@ -25,7 +25,7 @@ class ChairmanController extends Controller
             ->select('chairmen.*', 'bookings.date')
             ->leftJoin('bookings', function ($join) {
                 $join->on('chairmen.id', 'bookings.chairman_id')
-                    ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join chairmen as u2 on u2.id = a2.chairman_id group by u2.id)');
+                    ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join chairmen as u2 on u2.id = a2.chairman_id and u2.settings_id = ' . Auth::user()->settings->id . ' group by u2.id)');
             })
             ->whereNull('chairmen.deleted_at')
             ->where('chairmen.settings_id', Auth::user()->settings->id)
