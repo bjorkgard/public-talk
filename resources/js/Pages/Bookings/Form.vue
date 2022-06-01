@@ -165,7 +165,7 @@
                                 id="chairman"
                                 v-model="form.chairman_id"
                                 label="name"
-                                :options="chairmen"
+                                :options="sortedChairmen"
                                 :reduce="(chairman) => chairman.id"
                                 class="rounded-md shadow-sm style-chooser form-input"
                             >
@@ -332,6 +332,15 @@ export default {
             }
 
             return this.speakers
+        },
+        sortedChairmen() {
+            return this.chairmen.sort((a, b) => {
+                if (a.last_booking && b.last_booking) {
+                    return a.last_booking.date > b.last_booking.date ? 1 : -1
+                } else {
+                    return a.last_booking ? 1 : -1
+                }
+            })
         }
     },
     methods: {
