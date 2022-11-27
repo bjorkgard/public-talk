@@ -3,16 +3,7 @@
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                 <nav
-                    class="
-                        flex
-                        items-center
-                        justify-end
-                        px-4
-                        py-3
-                        bg-white
-                        border-t border-gray-200
-                        sm:px-6
-                    "
+                    class="flex items-center justify-end px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
                 >
                     <SearchInput :value="search" @input="searchSpeakers" />
                 </nav>
@@ -20,17 +11,7 @@
                     <thead>
                         <tr>
                             <th
-                                class="
-                                    px-6
-                                    py-3
-                                    text-xs
-                                    font-medium
-                                    leading-4
-                                    tracking-wider
-                                    text-left text-gray-500
-                                    uppercase
-                                    bg-gray-50
-                                "
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Efternamn
                                 <inertia-link
@@ -47,17 +28,7 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="
-                                    px-6
-                                    py-3
-                                    text-xs
-                                    font-medium
-                                    leading-4
-                                    tracking-wider
-                                    text-left text-gray-500
-                                    uppercase
-                                    bg-gray-50
-                                "
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Förnamn
                                 <inertia-link
@@ -74,17 +45,7 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="
-                                    px-6
-                                    py-3
-                                    text-xs
-                                    font-medium
-                                    leading-4
-                                    tracking-wider
-                                    text-left text-gray-500
-                                    uppercase
-                                    bg-gray-50
-                                "
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
                                 Församling
                                 <inertia-link
@@ -101,19 +62,9 @@
                                 </inertia-link>
                             </th>
                             <th
-                                class="
-                                    px-6
-                                    py-3
-                                    text-xs
-                                    font-medium
-                                    leading-4
-                                    tracking-wider
-                                    text-left text-gray-500
-                                    uppercase
-                                    bg-gray-50
-                                "
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-50"
                             >
-                                Seanast
+                                Senast
                                 <inertia-link
                                     :href="`${speakers.path}?order=asc&sort=date`"
                                     class="text-gray-400 hover:text-teak-500"
@@ -139,13 +90,7 @@
                                 >
                                     <Icons
                                         name="plus"
-                                        class="
-                                            w-5
-                                            text-gray-500
-                                            cursor-pointer
-                                            hover:text-teal-500
-                                            umami--click--add-speaker
-                                        "
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--add-speaker"
                                         @click.native="addSpeaker()"
                                     />
                                 </span>
@@ -159,64 +104,27 @@
                             :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
                         >
                             <td
-                                class="
-                                    px-6
-                                    py-4
-                                    text-sm
-                                    font-medium
-                                    leading-5
-                                    text-gray-900
-                                    whitespace-no-wrap
-                                "
+                                class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap"
                             >
                                 {{ row.lastname }}
                             </td>
                             <td
-                                class="
-                                    px-6
-                                    py-4
-                                    text-sm
-                                    leading-5
-                                    text-gray-500
-                                    whitespace-no-wrap
-                                "
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.firstname }}
                             </td>
                             <td
-                                class="
-                                    px-6
-                                    py-4
-                                    text-sm
-                                    leading-5
-                                    text-gray-500
-                                    whitespace-no-wrap
-                                "
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.congregation }}
                             </td>
                             <td
-                                class="
-                                    px-6
-                                    py-4
-                                    text-sm
-                                    leading-5
-                                    text-gray-500
-                                    whitespace-no-wrap
-                                "
+                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap"
                             >
                                 {{ row.date ? row.date : '' }}
                             </td>
                             <td
-                                class="
-                                    px-6
-                                    py-4
-                                    text-sm
-                                    font-medium
-                                    leading-5
-                                    text-right
-                                    whitespace-no-wrap
-                                "
+                                class="px-6 py-4 text-sm font-medium leading-5 text-right whitespace-no-wrap"
                             >
                                 <span
                                     v-if="
@@ -229,26 +137,14 @@
                                 >
                                     <Icons
                                         name="book"
-                                        class="
-                                            w-5
-                                            text-gray-500
-                                            cursor-pointer
-                                            hover:text-teal-500
-                                            umami--click--book-speaker
-                                        "
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--book-speaker"
                                         @click.native="bookSpeaker(row.id)"
                                     />
                                 </span>
                                 <span title="visa talarens föreläsningar">
                                     <Icons
                                         name="document"
-                                        class="
-                                            w-5
-                                            text-gray-500
-                                            cursor-pointer
-                                            hover:text-teal-500
-                                            umami--click--show-speaker-talks
-                                        "
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--show-speaker-talks"
                                         @click.native="showTalksForSpeaker(row.id)"
                                     />
                                 </span>
@@ -263,13 +159,7 @@
                                 >
                                     <Icons
                                         name="edit"
-                                        class="
-                                            w-5
-                                            text-gray-500
-                                            cursor-pointer
-                                            hover:text-teal-500
-                                            umami--click--edit-speaker
-                                        "
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--edit-speaker"
                                         @click.native="editSpeaker(row)"
                                     />
                                 </span>
@@ -284,13 +174,7 @@
                                 >
                                     <Icons
                                         name="delete"
-                                        class="
-                                            w-5
-                                            text-gray-500
-                                            cursor-pointer
-                                            hover:text-teal-500
-                                            umami--click--delete-speaker
-                                        "
+                                        class="w-5 text-gray-500 cursor-pointer hover:text-teal-500 umami--click--delete-speaker"
                                         @click.native="confirmSpeakerDeletion(row.id)"
                                     />
                                 </span>
@@ -299,16 +183,7 @@
                     </tbody>
                 </table>
                 <nav
-                    class="
-                        flex
-                        items-center
-                        justify-between
-                        px-4
-                        py-3
-                        bg-white
-                        border-t border-gray-200
-                        sm:px-6
-                    "
+                    class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 sm:px-6"
                 >
                     <div class="hidden sm:block">
                         <p class="text-sm leading-5 text-gray-700">
