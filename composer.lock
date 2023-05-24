@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f781216dc846c8210af410b5b0c1aa52",
+    "content-hash": "ec3e99fc00bb8496d325cf1450455e3d",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3630,29 +3630,29 @@
         },
         {
             "name": "pragmarx/countries",
-            "version": "v0.7.2",
+            "version": "v0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antonioribeiro/countries.git",
-                "reference": "49b71b520f4eae8a252ef754677fb0747f24dc7d"
+                "reference": "b98fe53cd899917efbddca92080e5982c5336a98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antonioribeiro/countries/zipball/49b71b520f4eae8a252ef754677fb0747f24dc7d",
-                "reference": "49b71b520f4eae8a252ef754677fb0747f24dc7d",
+                "url": "https://api.github.com/repos/antonioribeiro/countries/zipball/b98fe53cd899917efbddca92080e5982c5336a98",
+                "reference": "b98fe53cd899917efbddca92080e5982c5336a98",
                 "shasum": ""
             },
             "require": {
                 "colinodell/json5": "^1.0|^2.0",
                 "nette/caching": "^2.5|^3.0",
                 "php": ">=7.0",
-                "pragmarx/coollection": ">=0.5",
-                "psr/simple-cache": "^1.0"
+                "pragmarx/coollection": ">=0.8",
+                "psr/simple-cache": "^1.0|^2.0"
             },
             "require-dev": {
-                "gasparesganga/php-shapefile": "^2.4",
-                "phpunit/phpunit": "~6.0|~7.0|~8.0",
-                "squizlabs/php_codesniffer": "^2.3"
+                "gasparesganga/php-shapefile": "^3.4",
+                "phpunit/phpunit": "~6.0|~7.0|~8.0|^9.0",
+                "squizlabs/php_codesniffer": "^2.3|^3.6"
             },
             "type": "library",
             "autoload": {
@@ -3690,9 +3690,9 @@
             ],
             "support": {
                 "issues": "https://github.com/antonioribeiro/countries/issues",
-                "source": "https://github.com/antonioribeiro/countries/tree/v0.7.2"
+                "source": "https://github.com/antonioribeiro/countries/tree/v0.8.2"
             },
-            "time": "2020-09-27T16:34:12+00:00"
+            "time": "2022-09-07T10:41:57+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -4415,25 +4415,25 @@
         },
         {
             "name": "psr/simple-cache",
-            "version": "1.0.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+                "reference": "8707bf3cea6f710bf6ef05491234e3ab06f6432a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/8707bf3cea6f710bf6ef05491234e3ab06f6432a",
+                "reference": "8707bf3cea6f710bf6ef05491234e3ab06f6432a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "autoload": {
@@ -4448,7 +4448,7 @@
             "authors": [
                 {
                     "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
+                    "homepage": "https://www.php-fig.org/"
                 }
             ],
             "description": "Common interfaces for simple caching",
@@ -4460,9 +4460,9 @@
                 "simple-cache"
             ],
             "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/master"
+                "source": "https://github.com/php-fig/simple-cache/tree/2.0.0"
             },
-            "time": "2017-10-23T01:57:42+00:00"
+            "time": "2021-10-29T13:22:09+00:00"
         },
         {
             "name": "psy/psysh",
