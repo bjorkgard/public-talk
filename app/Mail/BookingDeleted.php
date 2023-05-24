@@ -7,11 +7,10 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Sammyjo20\Wagonwheel\Concerns\SaveForOnlineViewing;
 
 class BookingDeleted extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels, SaveForOnlineViewing;
+    use Queueable, SerializesModels;
 
     public $date;
     public $user;

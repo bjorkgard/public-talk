@@ -15,7 +15,7 @@ class SettingsController extends Controller
     public function index(Request $request)
     {
         $checkout = $request->user()->settings->newSubscription('default', [config('services.stripe.phone')])
-            ->meteredPlan(config('services.stripe.sms'))
+            ->meteredPrice(config('services.stripe.sms'))
             ->checkout([
                 'success_url' => route('stripe.success'),
                 'cancel_url' => route('settings.index')

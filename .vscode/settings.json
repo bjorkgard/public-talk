@@ -6,5 +6,6 @@
   "vetur.format.defaultFormatter.js": "none",
   "eslint.workingDirectories": [
     "./"
-  ]
+],
+"php-cs-fixer.documentFormattingProvider": false
 }

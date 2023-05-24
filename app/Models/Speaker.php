@@ -52,17 +52,22 @@ class Speaker extends Model
      */
     public function setPhoneAttribute($value)
     {
-        $this->attributes['phone'] = $value ? PhoneNumber::make($value, $this->attributes['phone_country']) : null;
+        $this->attributes['phone'] = $value ? new PhoneNumber($value, $this->attributes['phone_country']) : null;
     }
 
     /**
      * Get the users's formated phone
-     * 
+     *
      * @return string
      */
     public function getFormatedPhoneAttribute()
     {
-        return $this->phone ? PhoneNumber::make($this->phone, $this->phone_country)->formatNational() : null;
+        if($this->phone){
+            $phone = new PhoneNumber($this->phone, $this->phone_country);
+            return $phone->formatNational();
+        }
+
+        return null;
     }
 
     protected static function booted()

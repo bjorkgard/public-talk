@@ -64,17 +64,18 @@ class Chairman extends Model
      */
     public function setPhoneAttribute($value)
     {
-        $this->attributes['phone'] = PhoneNumber::make($value, $this->attributes['phone_country']);
+        $this->attributes['phone'] = new PhoneNumber($value, $this->attributes['phone_country']);
     }
 
     /**
      * Get the users's formated phone
-     * 
+     *
      * @return string
      */
     public function getFormatedPhoneAttribute()
     {
-        return PhoneNumber::make($this->phone, $this->phone_country)->formatNational();
+        $phone = new PhoneNumber($this->phone, $this->phone_country);
+        return $phone->formatNational();
     }
 
     public function lastBooking()
