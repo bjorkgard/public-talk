@@ -28,9 +28,9 @@
         "prettier": "^2.6.2",
         "tailwindcss": "^2.2.19",
         "tailwindcss-debug-screens": "^2.2.1",
-        "vue": "^2.6.14",
+        "vue": "^2.7.15",
         "vue-loader": "^15.11.1",
-        "vue-template-compiler": "^2.6.14"
+        "vue-template-compiler": "^2.7.15"
     },
     "dependencies": {
         "@inertiajs/vue2": "^1.0.7",
