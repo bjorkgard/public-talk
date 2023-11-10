@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.3.4",
-        "@tailwindcss/typography": "^0.5.9",
+        "@tailwindcss/typography": "^0.5.10",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.0",
         "babel-eslint": "^10.1.0",
