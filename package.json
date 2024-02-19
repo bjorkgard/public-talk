@@ -24,7 +24,7 @@
         "lodash": "^4.17.21",
         "portal-vue": "^2.1.7",
         "postcss": "^8.4.31",
-        "postcss-import": "^14.1.0",
+        "postcss-import": "^16.0.1",
         "prettier": "^2.6.2",
         "tailwindcss": "^2.2.19",
         "tailwindcss-debug-screens": "^2.2.1",
