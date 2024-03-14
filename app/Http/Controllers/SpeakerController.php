@@ -31,7 +31,7 @@ class SpeakerController extends Controller
                 ->select('speakers.*', 'bookings.date')
                 ->leftJoin('bookings', function ($join) {
                     $join->on('speakers.id', 'bookings.speaker_id')
-                        ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join speakers as u2 on u2.id = a2.speaker_id group by u2.id)');
+                        ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join speakers as u2 on u2.id = a2.speaker_id where a2.settings_id = ' . Auth::user()->settings->id . ' group by u2.id)');
                 })
                 ->whereNull('speakers.deleted_at')
                 ->where('speakers.settings_id', Auth::user()->settings->id)
@@ -49,7 +49,7 @@ class SpeakerController extends Controller
                 ->select('speakers.*', 'bookings.date')
                 ->leftJoin('bookings', function ($join) {
                     $join->on('speakers.id', 'bookings.speaker_id')
-                        ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join speakers as u2 on u2.id = a2.speaker_id group by u2.id)');
+                        ->whereRaw('bookings.date IN (select MAX(a2.date) from bookings as a2 join speakers as u2 on u2.id = a2.speaker_id where a2.settings_id = ' . Auth::user()->settings->id . ' group by u2.id)');
                 })
                 ->whereNull('speakers.deleted_at')
                 ->where('speakers.settings_id', Auth::user()->settings->id)
