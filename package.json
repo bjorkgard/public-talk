@@ -34,7 +34,7 @@
     },
     "dependencies": {
         "@inertiajs/vue2": "^1.0.7",
-        "dayjs": "^1.11.2",
+        "dayjs": "^1.11.11",
         "laravel-mix-polyfill": "^3.0.1",
         "vue-meta": "^2.4.0",
         "vue-select": "^3.11.2",
